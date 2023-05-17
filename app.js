@@ -1,95 +1,38 @@
-import { api_keys } from "./api_keys.js";
+import { moviesFromTMDB } from "./utils_tmdb.js";
+import { moviesFromRAPID } from "./utils_rapid.js";
+import { API_Key_Openweather } from "./utils_weather.js";
 
-const API_Key_TMDB = "?api_key=" + api_keys[0].API_Key_TMDB;
-const API_Key_Rapid = api_keys[1].API_Key_Rapid;
+window.addEventListener("load", main());
 
-const baseUrlTmdb = `https://api.themoviedb.org/3/`;
-const discoverTmdb = `discover/movie?`;
-const discoverUrlTmdb = baseUrlTmdb + discoverTmdb + API_Key_TMDB;
-const baseImgUrlTmdb = "https://image.tmdb.org/t/p/w500";
-const searchUrlTmdb = `${baseUrlTmdb}search/movie${API_Key_TMDB}&query=`;
-
-const optionsTMDB = {
-   method: "GET",
-   headers: {
-      accept: "application/json",
-      Authorization: api_keys[0].TMDB_Bearer,
-   },
-};
-
-const optionsRapid = {
-   method: "GET",
-   headers: {
-      "X-RapidAPI-Key": API_Key_Rapid,
-      "X-RapidAPI-Host": "online-movie-database.p.rapidapi.com",
-   },
-};
-
-const baseURLRapid = `https://online-movie-database.p.rapidapi.com/auto-complete?q=`;
-
-const radioButtons = document.querySelectorAll('input[name="radio-api"]');
-for (const radioButton of radioButtons) {
-   radioButton.addEventListener("change", changeAPI);
-}
-
-function changeAPI(e) {
-   if (this.checked) {
-      const selectedAPI = this.value;
-      const searchItem = searchMovieInput.value
-         ? searchMovieInput.value
-         : "alone";
-
-      if (selectedAPI === "tmdb") {
-         renderMovies("TMDB", searchUrlTmdb, searchItem);
-      } else if (selectedAPI === "rapid")
-         renderMovies("Rapid", baseURLRapid, searchItem);
-   }
-}
-
-async function searchMovies(apiInterface, url, searchTerm) {
-   let tempResults = {};
+async function main() {
    try {
-      if (apiInterface === "TMDB") {
-         const response = await fetch(url + searchTerm, optionsTMDB);
-         const { results } = await response.json();
-         tempResults = results.map((item) => {
-            const tempItem = {};
-            tempItem.movieTitle = item.title;
-            tempItem.moviePoster = item.poster_path
-               ? baseImgUrlTmdb + item.poster_path
-               : "./default_movie_poster.jpg";
-            tempItem.movieOverview = item.overview;
-            tempItem.movieRating = item.vote_average;
-            tempItem.movieDate = item.release_date;
-            return tempItem;
-         });
-      } else {
-         const response = await fetch(baseURLRapid + searchTerm, optionsRapid);
-         const { d } = await response.json();
-         tempResults = d.map((item) => {
-            const tempItem = {};
-            tempItem.movieTitle = item.l;
-            tempItem.moviePoster = item.i.imageUrl;
-            tempItem.movieOverview = item.s;
-            tempItem.movieRating = item.rank;
-            tempItem.movieDate = item.y;
-            return tempItem;
-         });
-      }
-      return tempResults;
+      renderMovies(await moviesFromTMDB("discover_mode"));
    } catch (error) {
-      console.log(error.message);
+      console.log(error);
    }
 }
 
-const mainSection = document.getElementById("main");
+async function getMovies(searchTerm) {
+   const movieList = tmdbSelected
+      ? await moviesFromTMDB(searchTerm)
+      : await moviesFromRAPID(searchTerm);
+   return movieList;
+}
 
-async function renderMovies(apiInterface, url, searchTerm) {
-   const listMovies = await searchMovies(apiInterface, url, searchTerm);
+const submitButton = document.getElementById("submit-button");
+const searchMovieInput = document.getElementById("search-movie-input");
 
-   if (listMovies.length > 0) {
+submitButton.addEventListener("click", async (e) => {
+   e.preventDefault();
+   renderMovies(await getMovies(searchMovieInput.value));
+});
+
+async function renderMovies(movieList) {
+   const mainSection = document.getElementById("main");
+   console.log("movieList to Render: ", movieList);
+   if (movieList.length > 0) {
       mainSection.innerHTML = ``;
-      listMovies.forEach((element) => {
+      movieList.forEach((element) => {
          const movieDiv = document.createElement("div");
          movieDiv.classList.add("movie");
 
@@ -109,23 +52,137 @@ async function renderMovies(apiInterface, url, searchTerm) {
          });
          mainSection.appendChild(movieDiv);
       });
+   } else {
+      console.log("empty movie list: please input a movie title!");
    }
 }
 
-const searchMovieInput = document.getElementById("search-movie-input");
-const submitButton = document.getElementById("submit-button");
+let tmdbSelected = true;
+const radioButtons = document.querySelectorAll('input[name="radio-api"]');
+for (const radioButton of radioButtons) {
+   radioButton.addEventListener("change", changeAPI);
+}
 
-submitButton.addEventListener("click", async (e) => {
-   e.preventDefault();
-   if (searchMovieInput.value)
-      renderMovies("TMDB", searchUrlTmdb, searchMovieInput.value);
-});
+async function changeAPI(e) {
+   // console.log("changeAPI ", e.target.value);
+   tmdbSelected = this.value === "tmdb";
+   renderMovies(await getMovies(searchMovieInput.value));
+}
 
-window.addEventListener("load", async () => {
-   renderMovies("TMDB", discoverUrlTmdb, "");
-   getWeather();
-   countryList = getRestCountries();
-});
+// renderMovies("TMDB", discoverUrlTMDB, "");
+// getWeather();
+// countryList = getRestCountries();
+
+// const API_Key_TMDB = "?api_key=" + api_keys[0].API_Key_TMDB;
+// const optionsTMDB = {
+//    method: "GET",
+//    headers: {
+//       accept: "application/json",
+//       Authorization: api_keys[0].TMDB_Bearer,
+//    },
+// };
+// const baseUrlTMDB = `https://api.themoviedb.org/3/`;
+// const discoverTMDB = `discover/movie?`;
+// const discoverUrlTMDB = baseUrlTMDB + discoverTMDB + API_Key_TMDB;
+// const baseImgUrlTMDB = "https://image.tmdb.org/t/p/w500";
+// const searchUrlTMDB = `${baseUrlTMDB}search/movie${API_Key_TMDB}&query=`;
+
+// const API_Key_RAPID = api_keys[1].API_Key_RAPID;
+// const optionsRAPID = {
+//    method: "GET",
+//    headers: {
+//       "X-RapidAPI-Key": API_Key_RAPID,
+//       "X-RapidAPI-Host": "online-movie-database.p.rapidapi.com",
+//    },
+// };
+// const baseUrlRAPID = `https://online-movie-database.p.rapidapi.com/auto-complete?q=`;
+
+// const radioButtons = document.querySelectorAll('input[name="radio-api"]');
+// for (const radioButton of radioButtons) {
+//    radioButton.addEventListener("change", changeAPI);
+// }
+
+// function changeAPI(e) {
+//    if (this.checked) {
+//       const selectedAPI = this.value;
+//       const searchItem = searchMovieInput.value
+//          ? searchMovieInput.value
+//          : "alone";
+
+//       if (selectedAPI === "tmdb") {
+//          renderMovies("TMDB", searchUrlTMDB, searchItem);
+//       } else if (selectedAPI === "rapid")
+//          renderMovies("Rapid", baseUrlRAPID, searchItem);
+//    }
+// }
+
+// async function searchMovies(apiInterface, url, searchTerm) {
+//    let tempResults = {};
+//    try {
+//       if (apiInterface === "TMDB") {
+//          const response = await fetch(url + searchTerm, optionsTMDB);
+//          const { results } = await response.json();
+//          tempResults = results.map((item) => {
+//             const tempItem = {};
+//             tempItem.movieTitle = item.title;
+//             tempItem.moviePoster = item.poster_path
+//                ? baseImgUrlTMDB + item.poster_path
+//                : "./default_movie_poster.jpg";
+//             tempItem.movieOverview = item.overview;
+//             tempItem.movieRating = item.vote_average;
+//             tempItem.movieDate = item.release_date;
+//             return tempItem;
+//          });
+//       } else {
+//          const response = await fetch(baseUrlRAPID + searchTerm, optionsRAPID);
+//          const { d } = await response.json();
+//          tempResults = d.map((item) => {
+//             const tempItem = {};
+//             tempItem.movieTitle = item.l;
+//             tempItem.moviePoster = item.i.imageUrl;
+//             tempItem.movieOverview = item.s;
+//             tempItem.movieRating = item.rank;
+//             tempItem.movieDate = item.y;
+//             return tempItem;
+//          });
+//       }
+//       return tempResults;
+//    } catch (error) {
+//       console.log(error.message);
+//    }
+// }
+
+// async function renderMovies(apiInterface, url, searchTerm) {
+//    const listMovies = await searchMovies(apiInterface, url, searchTerm);
+
+//    if (listMovies.length > 0) {
+//       mainSection.innerHTML = ``;
+//       listMovies.forEach((element) => {
+//          const movieDiv = document.createElement("div");
+//          movieDiv.classList.add("movie");
+
+//          movieDiv.innerHTML = `
+//          <img src=${element.moviePoster} alt=${element.movieTitle} />
+//          <div class="movie-info">
+//             <h2>${element.movieTitle}</h2>
+//             <span>${element.movieRating}</span>
+//          </div>
+//          <article data-overview="${element.movieOverview}"></article>
+//          <article data-year="${element.movieDate}"></article>
+//          `;
+
+//          movieDiv.addEventListener("click", (e) => {
+//             modalFormMovieDetails.style.display = "block";
+//             renderModalForm(e);
+//          });
+//          mainSection.appendChild(movieDiv);
+//       });
+//    }
+// }
+
+/* -------------------------------------------------------- */
+/* ---------------- Weather Info Section ------------------ */
+/* -------------------------------------------------------- */
 
 let countryList = [];
 const getRestCountries = async () => {
@@ -136,9 +193,6 @@ const getRestCountries = async () => {
    return json;
 };
 
-/* -------------------------------------------------------- */
-/* ---------------- Weather Info Section ------------------ */
-/* -------------------------------------------------------- */
 const locationTimezone = document.querySelector(".location-timezone");
 const temperatureDegree = document.querySelector(".temperature-degree");
 const temperatureDegreeSpan = document.querySelector(
@@ -161,16 +215,12 @@ const containerWeatherDetailsTable = document.getElementById(
 );
 
 const tableWeatherDetails = document.getElementById("table-weather-details");
-// const tableWeatherDetails = document.createElement("table");
-// tableWeatherDetails.id = "table-weather-details";
-// containerWeatherDetails.appendChild(tableWeatherDetails);
 
 const closeWeatherDetailsTable = document.getElementById(
    "close-weather-details-table"
 );
 
 const radio12hours = document.getElementById("radio-12hours");
-// console.log("radio12hours: ", radio12hours);
 
 refreshWeatherIcon.addEventListener("click", getWeather);
 infoWeatherIconTable.addEventListener("click", getWeather5days);
@@ -182,7 +232,7 @@ closeWeatherDetailsTable.addEventListener("click", () => {
 function getWeather() {
    let long;
    let lat;
-   const apiKey = api_keys[3].API_Key_OpenWeather;
+   // const API_Key_Openweather = api_keys[3].API_Key_OpenWeather;
 
    let srcWeatherIcon = "https://openweathermap.org/img/wn/10d@2x.png";
 
@@ -191,7 +241,7 @@ function getWeather() {
          long = position.coords.longitude;
          lat = position.coords.latitude;
 
-         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
 
          const currentWeather = fetch(url)
             .then((data) => {
@@ -214,7 +264,6 @@ function getWeather() {
 }
 
 function drawWeatherDetailsTable(data) {
-   // console.log("data: ", data);
    containerWeatherDetails.style.display = "block";
    containerWeatherDetailsTable.style.display = "block";
 
@@ -289,7 +338,7 @@ let weatherList = [];
 function getWeather5days() {
    let long;
    let lat;
-   const apiKey = "8fa1f9321e28807ef94ed3e41e70023b";
+   const API_Key_Openweather = "8fa1f9321e28807ef94ed3e41e70023b";
 
    let srcWeatherIcon = "https://openweathermap.org/img/wn/10d@2x.png";
 
@@ -304,7 +353,7 @@ function getWeather5days() {
          long = position.coords.longitude;
          lat = position.coords.latitude;
 
-         const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+         const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
 
          const currentWeather = fetch(urlFiveDays)
             .then((data) => {
@@ -422,7 +471,7 @@ const spanCloseModalForm = document
    );
 
 const buttonModalFormClose = document
-   .getElementById("button-modal-form-close")
+   .getElementById("button-close-modal-form")
    .addEventListener(
       "click",
       () => (modalFormMovieDetails.style.display = "none")
@@ -461,194 +510,3 @@ function renderModalForm(e) {
    </aside>`;
    modalFormContent.innerHTML = fillModalForm;
 }
-
-// async function createMovieList(apiInterface, url, searchTerm) {
-//    const listMovies = await searchMovies(apiInterface, url, searchTerm);
-//    console.log("listMovies: ", listMovies);
-//    const listMovies2 = await searchMovies("TMDB", searchUrlTmdb, "hard");
-//    console.log("listMovies2: ", listMovies2);
-//    return listMovies;
-// }
-
-// createMovieList("TMDB", discoverUrlTmdb, "");
-// createMovieList("TMDB", searchUrlTmdb, "hard");
-
-// const movieImg = document.createElement("img");
-// movieImg.src = element.moviePoster;
-// movieImg.alt = element.movieTitle;
-// movieDiv.appendChild(movieImg);
-
-// const movieInfoDiv = document.createElement("div");
-// const movieInfoH2 = document.createElement("h2");
-// movieInfoH2.textContent = element.movieTitle;
-// movieInfoDiv.appendChild(movieInfoH2);
-
-// const movieSpan = document.createElement("span");
-// movieSpan.textContent = element.movieRating;
-// movieInfoDiv.appendChild(movieSpan);
-// movieDiv.appendChild(movieInfoDiv);
-
-// const movieOverviewDiv = document.createElement("div");
-// movieOverviewDiv.classList.add("overview");
-// const movieOverviewH3 = document.createElement("h3");
-// movieOverviewH3.textContent = "Overview";
-// movieOverviewDiv.appendChild(movieOverviewH3);
-// const movieOverviewP = document.createElement("p");
-// movieOverviewP.textContent = element.overview;
-// movieOverviewDiv.appendChild(movieOverviewP);
-// movieDiv.appendChild(movieOverviewDiv);
-
-// searchMovies("Rapid", "alone");
-
-// searchMovies(baseURLRapid + "alone", optionsRapid);
-
-// async function searchMovies(url, options) {
-//    try {
-//       const response = await fetch(url, options);
-//       const result = await response.json();
-
-//       console.log("results: ", result);
-//    } catch (error) {
-//       console.log(error.message);
-//    }
-// }
-
-// searchMovies(baseURLTMDB + "alone", optionsTMDB);
-// searchMovies(baseURLRapid + "alone", optionsRapid);
-
-// async function searchMoviesOnRapidAPI(searchTerm) {
-//    const url = `https://online-movie-database.p.rapidapi.com/auto-complete?q=${searchTerm}`;
-
-//    try {
-//       const response = await fetch(url, options);
-//       const result = await response.json();
-//       console.log("result: ", result);
-//       const listMovies = result.d;
-
-//       divMovie.innerHTML = "";
-
-//       listMovies.map((movie) => {
-//          const movieName = movie.l;
-//          const moviePoster = movie.i?.imageUrl;
-//          const movieSelf = `<li><img src="${moviePoster}"> <h2>${movieName}</h2> </li>`;
-//          divMovie.innerHTML += movieSelf;
-//       });
-//    } catch (error) {
-//       console.error(error);
-//    }
-// }
-
-// async function searchMoviesOnTMDB(searchTerm) {
-//    const url = `https://api.themoviedb.org/3/search/movie?api_key=a650958776b124b4342710f4ba1b07d9&query=${searchTerm}`;
-
-//    try {
-//       const response = await fetch(url);
-//       const result = await response.json();
-//       console.log("result: ", result.results);
-// const listMovies = result.d;
-
-// divMovie.innerHTML = "";
-
-// listMovies.map((movie) => {
-//    const movieName = movie.l;
-//    const moviePoster = movie.i?.imageUrl;
-//    const movieSelf = `<li><img src="${moviePoster}"> <h2>${movieName}</h2> </li>`;
-//    divMovie.innerHTML += movieSelf;
-// });
-//    } catch (error) {
-//       console.error(error);
-//    }
-// }
-
-// searchMoviesOnRapidAPI("alone");
-// searchMoviesOnTMDB("alone");
-
-// const searchMovieInput = document.getElementById("search-movie-input");
-// const submitButton = document.getElementById("submit-button");
-
-// submitButton.addEventListener("click", (e) => {
-//    e.preventDefault();
-
-// searchMoviesOnRapidAPI(searchMovieInput.value);
-// });
-
-// const selectMovie = document.getElementById("select-movie");
-// selectMovie.addEventListener("change", (e) => {
-//    console.log("e: ", selectMovie.value);
-// });
-
-//https://www.youtube.com/watch?v=9Bvt6BFf6_U&ab_channel=AsishGeorgeTech
-
-// const divMovie = document.getElementsByClassName("movies")[0];
-
-// async function searchMoviesOnRapidAPI(searchTerm) {
-//    const url = `https://online-movie-database.p.rapidapi.com/auto-complete?q=${searchTerm}`;
-
-//    try {
-//       const response = await fetch(url, options);
-//       const result = await response.json();
-//       console.log("result: ", result);
-//       const listMovies = result.d;
-
-//       divMovie.innerHTML = "";
-
-//       listMovies.map((movie) => {
-//          const movieName = movie.l;
-//          const moviePoster = movie.i?.imageUrl;
-//          const movieSelf = `<li><img src="${moviePoster}"> <h2>${movieName}</h2> </li>`;
-//          divMovie.innerHTML += movieSelf;
-//       });
-//    } catch (error) {
-//       console.error(error);
-//    }
-// }
-
-// async function searchMoviesOnTMDB(searchTerm) {
-// const url = `https://api.themoviedb.org/3/movie/550?api_key=a650958776b124b4342710f4ba1b07d9`;
-//    const url = `https://api.themoviedb.org/3/search/movie?api_key=a650958776b124b4342710f4ba1b07d9&query=${searchTerm}`;
-
-//    try {
-//       const response = await fetch(url);
-//       const result = await response.json();
-//       console.log("result: ", result.results);
-// const listMovies = result.d;
-
-// divMovie.innerHTML = "";
-
-// listMovies.map((movie) => {
-//    const movieName = movie.l;
-//    const moviePoster = movie.i?.imageUrl;
-//    const movieSelf = `<li><img src="${moviePoster}"> <h2>${movieName}</h2> </li>`;
-//    divMovie.innerHTML += movieSelf;
-// });
-//    } catch (error) {
-//       console.error(error);
-//    }
-// }
-
-// searchMoviesOnRapidAPI("alone");
-// searchMoviesOnTMDB("alone");
-
-// fetch(
-//    "https://api.themoviedb.org/3/trending/movie/day?language=en-US",
-//    optionsTMDB
-// )
-//    .then((response) => response.json())
-//    .then((response) => console.log(response))
-//    .catch((err) => console.error(err));
-
-// const searchMovieInput = document.getElementById("search-movie-input");
-// const submitButton = document.getElementById("submit-button");
-
-// submitButton.addEventListener("click", (e) => {
-//    e.preventDefault();
-
-// searchMoviesOnRapidAPI(searchMovieInput.value);
-// });
-
-// const selectMovie = document.getElementById("select-movie");
-// selectMovie.addEventListener("change", (e) => {
-//    console.log("e: ", selectMovie.value);
-// });
-
-//https://www.youtube.com/watch?v=9Bvt6BFf6_U&ab_channel=AsishGeorgeTech
