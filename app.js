@@ -311,7 +311,6 @@ function getWeather5days() {
                return data.json();
             })
             .then((response) => {
-               console.log("5555555555555", response);
                weatherList = response.list;
                drawWeatherDetailsTable(weatherList.slice(0, 5));
             });
@@ -363,10 +362,6 @@ function changeHours(e) {
    }
 }
 
-// const tableWeatherDetails = document.createElement("table");
-// tableWeatherDetails.id = "table-weather-details";
-// containerWeatherDetails.appendChild(tableWeatherDetails);
-
 const closeWeatherDetailsGraph = document.getElementById(
    "close-weather-details-graph"
 );
@@ -388,7 +383,7 @@ function drawWeatherDetailsGraph(data) {
 
    const ctx = document.getElementById("canvas-weather-details");
 
-   new Chart(ctx, {
+   chartWeather = new Chart(ctx, {
       type: "bar",
       data: {
          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
