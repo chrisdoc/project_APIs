@@ -207,22 +207,22 @@
       <!--                     Modal Form                        -->
       <!-- ----------------------------------------------------- -->
       <div id="modal-form-movie-details">
-         <span class="close" id="span-close-modal-form">&times;</span>
-         <br>
-         <h2>Movie Details</h2>
-         <br>
-         <hr />
-         <br>
+         <div id="container-modal-form-header">
+            <h2 id="details-header-h2">Movie Details</h2>            
+            <span class="close" id="span-close-modal-form">&times;</span>
+         </div>
+         <br> <hr /> <br>
          <div id="modal-form-content">
-            <img src="https://image.tmdb.org/t/p/w500/qnqGbB22YJ7dSs4o6M7exTpNxPz.jpg" alt="">
+            <img id="details-movie-image" src="https://image.tmdb.org/t/p/w500/qnqGbB22YJ7dSs4o6M7exTpNxPz.jpg" alt="" >
 
             <aside id="modal-form-aside">
                <h1 id="details-title">Movie Title</h1>
+               <h3 id="details-rating">Rating</h3>
                <h2 id="details-year">Year</h2>
                <h3 id="details-genre">Genre</h3>
                <h4 id="details-director">Director</h4>
-               <h2>Overview</h2>
-               <p id="details-overview">
+               <h2 id="details-overview-h2">Overview</h2>
+               <p id="details-overview-p">
                   A semi-retired special ops assassin and a DEA agent cross
                   paths on separate missions to stop a cyber terrorist
                   organization that has built a dangerous machine threatening
@@ -232,10 +232,6 @@
             </aside>
          </div>
          <div class="button-group">
-            <!-- <button type="button" id="button-add-comment-fill-random">
-               Fill Random
-            </button>
-            <button type="button" id="button-add-comment-add">Add</button> -->
             <button type="button" id="button-close-modal-form">Close</button>
          </div>
       </div>

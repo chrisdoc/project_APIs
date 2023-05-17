@@ -511,6 +511,34 @@ table {
    top: 10%;
 }
 
+#container-modal-form-header {
+   display: flex;
+   align-items: center;
+   /* justify-content: space-around; */
+}
+
+/* #wrap-header {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: aqua;
+   width: 80%;
+} */
+
+#span-close-modal-form {
+   font-size: 32px;
+   font-weight: bold;
+   cursor: pointer;
+   margin-left: auto;
+}
+
+#details-header-h2 {
+   /* border: 1px solid red; */
+   width: 90%;
+
+   text-align: right;
+}
+
 #modal-form-movie-details h1 {
    text-align: center;
    color: coral;
@@ -524,12 +552,12 @@ table {
 }
 
 #modal-form-movie-details .close {
-   position: absolute;
+   /* position: absolute;
    top: 7px;
-   right: 7px;
-   font-size: 32px;
+   right: 7px; */
+   /* font-size: 32px;
    font-weight: bold;
-   cursor: pointer;
+   cursor: pointer; */
    /* z-index: 9999; */
 }
 
