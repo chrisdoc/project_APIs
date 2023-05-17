@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>MyFlix</title>
+      <link rel="stylesheet" href="style.css" />
+   </head>
+   <body>
+      <header class="sticky-header">
+         <div class="search">
+            <form id="search-form">
+               <label for="search-movie-input">Search Movie</label>
+               <input
+                  type="search"
+                  id="search-movie-input"
+                  name="search-movie"
+                  placeholder="Movie Title"
+               />
+               <input type="submit" id="submit-button" />
+            </form>
+
+            <form id="radio-group">
+               <label>Select API</label>
+               <input
+                  type="radio"
+                  id="radio-TMDB"
+                  name="radio-api"
+                  value="tmdb"
+                  checked
+               />
+               <label for="radio-TMDB">TMDB</label><br />
+
+               <input
+                  type="radio"
+                  id="radio-rapid"
+                  name="radio-api"
+                  value="rapid"
+               />
+               <label for="radio-rapid">Rapid API</label><br />
+            </form>
+
+            <!-- <div class="combobox">
+               <label for="select-movie">Choose a Movie:</label>
+               <select name="select-movie" id="select-movie">
+                  <option value="">--Movie Title--</option>
+                  <option value="Home Alone">Home Alone</option>
+                  <option value="Leon">Leon</option>
+                  <option value="The Game">The Game</option>
+                  <option value="Ring">Ring</option>
+               </select>
+            </div> -->
+         </div>
+      </header>
+
+      <main id="main">
+         <!-- <div class="movie">
+            <img src="./fall.jpg" alt="fall" />
+            <div class="movie-info">
+               <h2>Movie Title</h2>
+               <span class="green">9.8</span>
+            </div>
+            <div class="overview">
+               <h3>Overview</h3>
+               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis
+               aut rerum, vero non nam provident, laudantium ipsum architecto ea
+               id harum reiciendis aspernatur nihil numquam quibusdam tempora,
+               unde recusandae asperiores?
+            </div>
+         </div> -->
+      </main>
+
+
+      <!-- ----------------------------------------------------- -->
+      <!--                       Footer                          -->
+      <!-- ----------------------------------------------------- -->
+      <div class="container-footer sticky-footer" id="container-footer">
+         <div class="container-weather">
+            <div class="container-weather-left">
+               <img id="refresh-weather-icon" src="./images/refresh.png" alt="refresh">
+               <img id="info-weather-icon-table" src="./images/windows-table-icon-3.png" alt="table icon">
+               <img id="info-weather-icon-graph" src="./images/business-graph-business-growth-growth-icon-pictures-8.png" alt="table icon">
+               <img id="flag-icon" src="https://flagcdn.com/w320/nl.png" alt="flag">
+               <h3>Weather NOW</h3>
+               <h1 class="location-timezone">(Timezone/Country)</h1>
+
+               <div class="container-weather-middle">
+                  <h2 class="temperature-degree">34</h2>
+                  <span>&#8451</span>
+               </div>          
+            </div>
+            <div class="container-weather-right">
+               <div class="temperature-description">It's too cold.</div>
+               <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="clear">
+            </div>
+         </div>
+
+         <div class="container-weather-details" id="container-weather-details">
+            <div id="container-weather-details-table">
+               <div class="container-weather-details-header">              
+                  <div class="container-details-radio">
+                     <input
+                        type="radio"
+                        id="radio-6hours"
+                        name="radio-hours"
+                        value="6 hours"
+                     />
+                     <label for="radio-6hours">6 Hours</label>
+                     <input
+                        type="radio"
+                        id="radio-12hours"
+                        name="radio-hours"
+                        value="12 hours"
+                        checked
+                     />
+                     <label for="radio-12hours">12 Hours</label>
+                     <input
+                        type="radio"
+                        id="radio-24hours"
+                        name="radio-hours"
+                        value="24 hours"
+                     />
+                     <label for="radio-24hours">24 Hours</label>
+                     <input
+                        type="radio"
+                        id="radio-48hours"
+                        name="radio-hours"
+                        value="48 hours"
+                        disabled
+                     />
+                     <label for="radio-48hours">2 Days</label>
+                     <input
+                        type="radio"
+                        id="radio-72hours"
+                        name="radio-hours"
+                        value="72 hours"
+                        disabled
+                     />
+                     <label for="radio-72hours">3 Days</label>          
+                     <input
+                     type="radio"
+                     id="radio-120hours"
+                     name="radio-hours"
+                     value="120 hours"
+                     disabled
+                  />
+                  <label for="radio-72hours">5 Days</label>   
+                  </div>   
+                  <img id="close-weather-details-table" src="./images/Button-Close-icon.png" alt="flag">
+               </div>               
+               <table id="table-weather-details"></table>
+            </div>
+
+            <div id="container-weather-details-graph">
+               <img id="close-weather-details-graph" src="./images/Button-Close-icon.png" alt="flag">
+
+               <canvas id="canvas-weather-details">
+
+               </canvas>
+            </div>
+
+            <!-- <br> -->
+            <!-- <table id="table-weather-details-hour">
+            </table> -->
+            <!-- <h3>( Hours )</h3> -->
+
+         </div>
+
+         <div class="container-footer-bottom">
+            <p>All Rights Reserved | info@zekaikoc.net</p>
+            <div class="container-footer-social-links">
+               <a href="https://twitter.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49e1c7cfb7f28_twitter.svg"
+                     alt=""
+                  />Twitter</a
+               >
+               <a href="https://facebook.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49edca2fb808b_face.svg"
+                     alt=""
+                  />FaceBook</a
+               >
+               <a href="https://linkedin.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49ee218fb7f16_linkedin.svg"
+                     alt=""
+                  />LinkedIn</a
+               >
+               <a href="https://youtube.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49e989bfb808d_yt.svg"
+                     alt=""
+                  />YouTube</a
+               >
+               <a href="https://github.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49e09d0fb808c_gh.svg"
+                     alt=""
+                  />GitHub</a
+               >
+            </div>
+         </div>
+      </div>
+
+
+      <!-- ----------------------------------------------------- -->
+      <!--                     Modal Form                        -->
+      <!-- ----------------------------------------------------- -->
+      <div id="modal-form-movie-details">
+         <span class="close" id="span-close-modal-form">&times;</span>
+         <br>
+         <h2>Movie Details</h2>
+         <br>
+         <hr />
+         <br>
+         <div id="modal-form-content">
+            <img src="https://image.tmdb.org/t/p/w500/qnqGbB22YJ7dSs4o6M7exTpNxPz.jpg" alt="">
+
+            <aside id="modal-form-aside">
+               <h1 id="details-title">Movie Title</h1>
+               <h2 id="details-year">Year</h2>
+               <h3 id="details-genre">Genre</h3>
+               <h4 id="details-director">Director</h4>
+               <h2>Overview</h2>
+               <p id="details-overview">
+                  A semi-retired special ops assassin and a DEA agent cross
+                  paths on separate missions to stop a cyber terrorist
+                  organization that has built a dangerous machine threatening
+                  to attack the power grid and bring catastrophe to the
+                  world.
+               </p>
+            </aside>
+         </div>
+         <div class="button-group">
+            <!-- <button type="button" id="button-add-comment-fill-random">
+               Fill Random
+            </button>
+            <button type="button" id="button-add-comment-add">Add</button> -->
+            <button type="button" id="button-modal-form-close">Close</button>
+         </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="app.js" type="module"></script>
+   </body>
+</html>
