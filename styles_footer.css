@@ -1,7 +1,6 @@
 /* ----------------------------------------------------------- */
 /*                          Footer Styling                     */
 /* ----------------------------------------------------------- */
-
 .container-footer {
    width: 100%;
    display: flex;
@@ -9,103 +8,84 @@
    align-items: center;
 }
 
-.container-footer img {
-   height: 20px;
-   margin-right: 5px;
-}
-
 .container-footer h3 {
    font-size: 18px;
    text-align: center;
 }
 
-.container-footer q {
-   font-style: italic;
-}
-
-.container-footer-bottom {
-   display: flex;
-   align-items: center;
-   color: white;
-   width: 100%;
-   background: linear-gradient(rgb(6, 28, 150), rgb(47, 150, 163));
-   padding: 10px;
-}
-
-.container-footer-social-links {
-   display: flex;
-   align-items: center;
-   margin-left: auto;
-}
-
-.container-footer-social-links a {
-   display: flex;
-   align-items: center;
-   margin-right: 15px;
-   text-decoration: none;
-   color: wheat;
-}
-
+/* ----------------------------------------------------------- */
+/*                          Footer Top                         */
+/* ----------------------------------------------------------- */
 .container-footer-top {
    width: 100%;
    height: 70px;
    display: flex;
    align-items: center;
-
    background: linear-gradient(rgb(47, 150, 163), rgb(6, 28, 150));
-
    font-family: sans-serif;
    color: white;
 }
 
+/*                       Footer Top Left                       */
+/* ----------------------------------------------------------- */
 .container-footer-top-left {
-   width: 250px;
-   display: flex;
-   align-items: center;
-   justify-content: space-around;
-   background-color: bisque;
-}
-
-.container-footer-top-middle {
    display: flex;
    align-items: center;
    background-color: cadetblue;
-   width: 60%;
+   width: 90%;
+   padding-left: 20px;
 }
 
-.container-footer-top-right {
-   margin-left: auto;
+.container-footer-top-left h3 {
+   /* border: 1px solid red; */
+}
+
+#location-timezone {
+   margin: 0 10px;
+}
+
+#flag-icon {
+   height: 30px;
+   margin-right: 20px;
+}
+
+#temperature-degree {
+   font-size: 36px;
+}
+
+#temperature-symbol {
+   font-size: 36px;
+}
+
+/*                       Footer Top Middle                     */
+/* ----------------------------------------------------------- */
+.container-footer-top-middle {
+   width: 230px;
    display: flex;
    align-items: center;
-   justify-content: space-between;
+   justify-content: space-around;
    background-color: black;
-}
-
-.degree-section {
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-}
-
-span {
-   font-size: 36px;
-}
-
-.temperature-degree {
-   font-size: 36px;
 }
 
 .temperature-description {
    font-weight: bold;
 }
 
-#weather-icon {
+#current-weather-icon {
    height: 40px;
-   border: 1px solid red;
+}
+
+/*                       Footer Top Right                      */
+/* ----------------------------------------------------------- */
+.container-footer-top-right {
+   width: 170px;
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   background-color: bisque;
 }
 
 #refresh-weather-icon {
-   width: 30px;
    height: 30px;
 }
 
@@ -117,7 +97,6 @@ span {
 }
 
 #info-weather-icon-table {
-   width: 40px;
    height: 30px;
 }
 
@@ -129,7 +108,6 @@ span {
 }
 
 #info-weather-icon-graph {
-   width: 40px;
    height: 40px;
 }
 
@@ -139,6 +117,10 @@ span {
    transition-duration: 0.4s;
    cursor: pointer;
 }
+
+/* ----------------------------------------------------------- */
+/*                          Footer Body                         */
+/* ----------------------------------------------------------- */
 
 #container-footer-body {
    display: none;
@@ -264,6 +246,43 @@ table {
    cursor: pointer;
 }
 
+/* ----------------------------------------------------------- */
+/*                          Footer Bottom                      */
+/* ----------------------------------------------------------- */
+.container-footer-bottom {
+   display: flex;
+   align-items: center;
+   color: white;
+   width: 100%;
+   background: linear-gradient(rgb(6, 28, 150), rgb(47, 150, 163));
+   padding: 10px;
+   /* background-color: red; */
+}
+
+.container-footer-bottom span {
+   font-style: italic;
+   font-size: 18px;
+}
+
+.container-footer-bottom img {
+   height: 20px;
+   margin-right: 5px;
+}
+
+.container-footer-social-links {
+   display: flex;
+   align-items: center;
+   margin-left: auto;
+}
+
+.container-footer-social-links a {
+   display: flex;
+   align-items: center;
+   margin-right: 15px;
+   text-decoration: none;
+   color: wheat;
+}
+
 /* ----------------------------------------------------- */
 /*                      Sticky Footer                    */
 /* ----------------------------------------------------- */
@@ -275,7 +294,7 @@ table {
 /* ----------------------------------------------------- */
 /*                     Responsive Footer                 */
 /* ----------------------------------------------------- */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 850px) {
    .container-footer-bottom {
       flex-direction: column;
    }
@@ -291,5 +310,11 @@ table {
       align-items: center;
       justify-content: center;
       margin-bottom: 10px;
+   }
+}
+
+@media screen and (max-width: 900px) {
+   .container-footer-top {
+      flex-direction: column;
    }
 }

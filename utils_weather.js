@@ -23,7 +23,7 @@ const temperatureDegreeSpan = document.querySelector(
 const temperatureDescription = document.querySelector(
    ".temperature-description"
 );
-const weatherIcon = document.querySelector("#weather-icon");
+const weatherIcon = document.querySelector("#current-weather-icon");
 const flagIcon = document.querySelector("#flag-icon");
 const refreshWeatherIcon = document.getElementById("refresh-weather-icon");
 const infoWeatherIconTable = document.getElementById("info-weather-icon-table");
