@@ -46,4 +46,4 @@ Try to integrate additional APIs if convenient.
 
 ![main view](./images/design1.jpg)
 ![details view](./images/design2.jpg)
-![error view](./images/design2.jpg)
+![error view](./images/design3.jpg)
