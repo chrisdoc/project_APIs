@@ -40,6 +40,10 @@ Try to integrate additional APIs if convenient.
 
 ## Design
 
-Design will be **responsive**.
-**Flexbox** will be the main alignment tool.
-A modal form will be designed for both `movie details info` and `error messages`.
+- Design will be **responsive**.
+- **Flexbox** will be the main alignment tool.
+- A modal form will be designed for both `movie details info` and `error messages`.
+
+![main view](./images/design1.jpgimage.jpg)
+![details view](./images/design2.jpgimage.jpg)
+![error view](./images/design2.jpgimage.jpg)
