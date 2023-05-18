@@ -5,53 +5,43 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>MyFlix</title>
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="styles_main_body.css" />
+      <link rel="stylesheet" href="styles_header.css" />
+      <link rel="stylesheet" href="styles_footer.css" />
+      <link rel="stylesheet" href="styles_modal_form.css" />
    </head>
    <body>
+
       <header class="sticky-header">
-         <div class="search">
-            <form id="search-form">
-               <label for="search-movie-input">Search Movie</label>
-               <input
-                  type="search"
-                  id="search-movie-input"
-                  name="search-movie"
-                  placeholder="Movie Title"
-               />
-               <input type="submit" id="submit-button" />
-            </form>
+         <form id="form-header-search">
+            <label for="search-movie-input">Search Movie</label>
+            <input
+               type="search"
+               id="search-movie-input"
+               name="search-movie"
+               placeholder="Movie Title"
+            />
+            <input type="submit" id="submit-button" />
+         </form>
 
-            <form id="radio-group">
-               <label>Select API</label>
-               <input
-                  type="radio"
-                  id="radio-TMDB"
-                  name="radio-api"
-                  value="tmdb"
-                  checked
-               />
-               <label for="radio-TMDB">TMDB</label><br />
-
-               <input
-                  type="radio"
-                  id="radio-rapid"
-                  name="radio-api"
-                  value="rapid"
-               />
-               <label for="radio-rapid">Rapid API</label><br />
-            </form>
-
-            <!-- <div class="combobox">
-               <label for="select-movie">Choose a Movie:</label>
-               <select name="select-movie" id="select-movie">
-                  <option value="">--Movie Title--</option>
-                  <option value="Home Alone">Home Alone</option>
-                  <option value="Leon">Leon</option>
-                  <option value="The Game">The Game</option>
-                  <option value="Ring">Ring</option>
-               </select>
-            </div> -->
-         </div>
+         <form id="form-header-radio-group">
+            <label>Select API</label>
+            <input
+               type="radio"
+               id="radio-TMDB"
+               name="radio-api"
+               value="tmdb"
+               checked
+            />
+            <label for="radio-TMDB">TMDB</label><br />
+            <input
+               type="radio"
+               id="radio-rapid"
+               name="radio-api"
+               value="rapid"
+            />
+            <label for="radio-rapid">Rapid API</label><br />
+         </form>
       </header>
 
       <main id="main">
@@ -75,23 +65,145 @@
       <!-- ----------------------------------------------------- -->
       <!--                       Footer                          -->
       <!-- ----------------------------------------------------- -->
+
+
       <div class="container-footer sticky-footer" id="container-footer">
+         <div class="container-footer-top">
+            <div class="container-footer-top-left">
+               <img id="refresh-weather-icon" src="./images/refresh.png" alt="refresh">
+               <img id="info-weather-icon-table" src="./images/windows-table-icon-3.png" alt="table icon">
+               <img id="info-weather-icon-graph" src="./images/business-graph-business-growth-growth-icon-pictures-8.png" alt="table icon">
+               <img id="flag-icon" src="https://flagcdn.com/w320/nl.png" alt="flag">  
+            </div>                          
+            <div class="container-footer-top-middle">
+               <h3>Weather NOW</h3>
+               <h1 class="location-timezone">(Timezone/Country)</h1>
+               <h2 class="temperature-degree">34</h2>
+               <span>&#8451</span>
+            </div>   
+            <div class="container-footer-top-right">
+               <div class="temperature-description">It's too cold here in Amsterdam.</div>
+               <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="clear">
+            </div>
+         </div>
+
+         <div class="container-footer-body" id="container-footer-body">
+            <div id="container-footer-body-table">
+               <div class="container-weather-details-header">              
+                  <div class="container-details-radio">
+                     <input
+                        type="radio"
+                        id="radio-6hours"
+                        name="radio-hours"
+                        value="6 hours"
+                     />
+                     <label for="radio-6hours">6 Hours</label>
+                     <input
+                        type="radio"
+                        id="radio-12hours"
+                        name="radio-hours"
+                        value="12 hours"
+                        checked
+                     />
+                     <label for="radio-12hours">12 Hours</label>
+                     <input
+                        type="radio"
+                        id="radio-24hours"
+                        name="radio-hours"
+                        value="24 hours"
+                     />
+                     <label for="radio-24hours">24 Hours</label>
+                     <input
+                        type="radio"
+                        id="radio-48hours"
+                        name="radio-hours"
+                        value="48 hours"
+                        disabled
+                     />
+                     <label for="radio-48hours">2 Days</label>
+                     <input
+                        type="radio"
+                        id="radio-72hours"
+                        name="radio-hours"
+                        value="72 hours"
+                        disabled
+                     />
+                     <label for="radio-72hours">3 Days</label>          
+                     <input
+                     type="radio"
+                     id="radio-120hours"
+                     name="radio-hours"
+                     value="120 hours"
+                     disabled
+                  />
+                  <label for="radio-72hours">5 Days</label>   
+                  </div>   
+                  <img id="close-weather-details-table" src="./images/Button-Close-icon.png" alt="flag">
+               </div>               
+               <table id="table-weather-details"></table>
+            </div>
+
+            <div id="container-footer-body-graph">
+               <img id="close-weather-details-graph" src="./images/Button-Close-icon.png" alt="flag">
+               <canvas id="canvas-weather-details"> </canvas>
+            </div>
+
+         </div>
+
+         <div class="container-footer-bottom">
+            <p>All Rights Reserved | info@zekaikoc.net</p>
+            <div class="container-footer-social-links">
+               <a href="https://twitter.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49e1c7cfb7f28_twitter.svg"
+                     alt=""
+                  />Twitter</a
+               >
+               <a href="https://facebook.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49edca2fb808b_face.svg"
+                     alt=""
+                  />FaceBook</a
+               >
+               <a href="https://linkedin.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49ee218fb7f16_linkedin.svg"
+                     alt=""
+                  />LinkedIn</a
+               >
+               <a href="https://youtube.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49e989bfb808d_yt.svg"
+                     alt=""
+                  />YouTube</a
+               >
+               <a href="https://github.com" target="_blank"
+                  ><img
+                     src="https://uploads-ssl.webflow.com/62745a1007e49e2461fb7ecd/62745a1007e49e09d0fb808c_gh.svg"
+                     alt=""
+                  />GitHub</a
+               >
+            </div>
+         </div>
+      </div>
+
+
+      <!-- <div class="container-footer sticky-footer" id="container-footer">
          <div class="container-weather">
             <div class="container-weather-left">
                <img id="refresh-weather-icon" src="./images/refresh.png" alt="refresh">
                <img id="info-weather-icon-table" src="./images/windows-table-icon-3.png" alt="table icon">
                <img id="info-weather-icon-graph" src="./images/business-graph-business-growth-growth-icon-pictures-8.png" alt="table icon">
-               <img id="flag-icon" src="https://flagcdn.com/w320/nl.png" alt="flag">
+               <img id="flag-icon" src="https://flagcdn.com/w320/nl.png" alt="flag">  
+            </div>                          
+            <div class="container-weather-middle">
                <h3>Weather NOW</h3>
                <h1 class="location-timezone">(Timezone/Country)</h1>
-
-               <div class="container-weather-middle">
-                  <h2 class="temperature-degree">34</h2>
-                  <span>&#8451</span>
-               </div>          
-            </div>
+               <h2 class="temperature-degree">34</h2>
+               <span>&#8451</span>
+            </div>   
             <div class="container-weather-right">
-               <div class="temperature-description">It's too cold.</div>
+               <div class="temperature-description">It's too cold here in Amsterdam.</div>
                <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="clear">
             </div>
          </div>
@@ -200,7 +312,7 @@
                >
             </div>
          </div>
-      </div>
+      </div> -->
 
 
       <!-- ----------------------------------------------------- -->

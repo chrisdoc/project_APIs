@@ -21,7 +21,7 @@ const buttonModalFormClose = document
       () => (modalFormMovieDetails.style.display = "none")
    );
 
-export function renderModalForm(e) {
+export function renderModalForm(e, errorMessage) {
    modalFormMovieDetails.style.display = "block";
 
    if (e === "render_error") {
@@ -37,8 +37,8 @@ export function renderModalForm(e) {
       document.getElementById("details-genre").textContent = "";
       document.getElementById("details-director").textContent = "";
       document.getElementById("details-overview-h2").textContent = "";
-      document.getElementById("details-overview-p").textContent =
-         "Please input a search term in the Search Movie section, Movie Title.";
+      document.getElementById("details-overview-p").textContent = errorMessage;
+      // "Please input a search term in the Search Movie section, Movie Title.";
       return;
    }
 
