@@ -44,6 +44,6 @@ Try to integrate additional APIs if convenient.
 - **Flexbox** will be the main alignment tool.
 - A modal form will be designed for both `movie details info` and `error messages`.
 
-![main view](./images/design1.jpgimage.jpg)
-![details view](./images/design2.jpgimage.jpg)
-![error view](./images/design2.jpgimage.jpg)
+![main view](./images/design1.jpg)
+![details view](./images/design2.jpg)
+![error view](./images/design2.jpg)
