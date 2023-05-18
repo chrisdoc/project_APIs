@@ -5,78 +5,54 @@ export const API_Key_Openweather = api_keys[2].API_Key_OpenWeather;
 /* -------------------------------------------------------- */
 /* ---------------- Weather Info Section ------------------ */
 /* -------------------------------------------------------- */
+const locationTimezone = document.querySelector("#location-timezone");
+const temperatureDegree = document.querySelector("#temperature-degree");
+// const temperatureDegreeSpan = document.querySelector(
+//    ".temperature-degree span"
+// );
+const temperatureDescription = document.querySelector(
+   "#temperature-description"
+);
+const currentWeatherIcon = document.querySelector("#current-weather-icon");
+const flagIcon = document.querySelector("#flag-icon");
 
-let countryList = [];
-const getRestCountries = async () => {
-   const response = await fetch("https://restcountries.com/v3.1/all");
-
-   const json = await response.json();
-   // console.log(json);
-   return json;
+const defaultCoordinates = {
+   lat: 52.377956,
+   long: 4.89707,
 };
 
-const locationTimezone = document.querySelector(".location-timezone");
-const temperatureDegree = document.querySelector(".temperature-degree");
-const temperatureDegreeSpan = document.querySelector(
-   ".temperature-degree span"
-);
-const temperatureDescription = document.querySelector(
-   ".temperature-description"
-);
-const weatherIcon = document.querySelector("#current-weather-icon");
-const flagIcon = document.querySelector("#flag-icon");
-const refreshWeatherIcon = document.getElementById("refresh-weather-icon");
-const infoWeatherIconTable = document.getElementById("info-weather-icon-table");
+setInterval(() => {
+   console.log("Refreshing weather...");
+   getWeatherData();
+}, 200000);
 
-const containerFooterStickyFooter = document.getElementById("container-footer");
-const containerWeatherDetails = document.getElementById(
-   "container-weather-details"
-);
-const containerWeatherDetailsTable = document.getElementById(
-   "container-weather-details-table"
-);
+const getCountyFlags = async () => {
+   const response = await fetch(
+      "https://countriesnow.space/api/v0.1/countries/flag/images"
+   );
+   const { data } = await response.json();
+   return data;
+};
 
-const tableWeatherDetails = document.getElementById("table-weather-details");
+let countryList = [];
+(async function main() {
+   countryList = await getCountyFlags();
+})();
 
-const closeWeatherDetailsTable = document.getElementById(
-   "close-weather-details-table"
-);
-
-const radio12hours = document.getElementById("radio-12hours");
-
-refreshWeatherIcon.addEventListener("click", getWeather);
-infoWeatherIconTable.addEventListener("click", getWeather5days);
-closeWeatherDetailsTable.addEventListener("click", () => {
-   containerWeatherDetailsTable.style.display = "none";
-   containerWeatherDetails.style.display = "none";
-});
-
-function getWeather() {
-   let long;
-   let lat;
-   // const API_Key_Openweather = api_keys[3].API_Key_OpenWeather;
-
-   let srcWeatherIcon = "https://openweathermap.org/img/wn/10d@2x.png";
-
+export function getWeatherData() {
    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-         long = position.coords.longitude;
-         lat = position.coords.latitude;
+         const long = position.coords.longitude || defaultCoordinates.long;
+         const lat = position.coords.latitude || defaultCoordinates.lat;
 
          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
 
-         const currentWeather = fetch(url)
+         fetch(url)
             .then((data) => {
                return data.json();
             })
             .then((response) => {
-               console.log(response);
-               const { main, name, weather, sys } = response;
-               locationTimezone.innerHTML = `(${name} / ${sys.country})`;
-               temperatureDegree.innerHTML = Math.round(main.temp);
-               temperatureDescription.innerHTML = weather[0].description;
-               weatherIcon.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
-               flagIcon.src = matchFlag(sys.country);
+               renderWeatherData(response);
             })
             .catch((err) => {
                console.log("Error: ", err);
@@ -85,9 +61,54 @@ function getWeather() {
    }
 }
 
+function renderWeatherData(data) {
+   console.log("rendering new weather data");
+   const { main, name, weather, sys } = data;
+   locationTimezone.innerHTML = `${name}`;
+   temperatureDegree.innerHTML = Math.round(main.temp);
+   temperatureDescription.innerHTML = weather[0].description;
+   currentWeatherIcon.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+   flagIcon.src = matchFlag(sys.country);
+}
+
+const matchFlag = (countryAbbreviation) => {
+   for (let i = 0; i < countryList.length; i++) {
+      if (countryAbbreviation.toUpperCase() === countryList[i].iso2)
+         return countryList[i].flag;
+   }
+   return "https://flagcdn.com/w320/nl.png";
+};
+
+const refreshWeatherIcon = document.getElementById("refresh-weather-icon");
+refreshWeatherIcon.addEventListener("click", getWeatherData);
+
+/* ----------------------------------------------------------- */
+/*                  Weather Table Section                      */
+/* ----------------------------------------------------------- */
+const infoWeatherIconTable = document.getElementById("info-weather-icon-table");
+infoWeatherIconTable.addEventListener("click", getWeather5days);
+
+const containerFooterBody = document.getElementById("container-footer-body");
+const containerFooterBodyTable = document.getElementById(
+   "container-footer-body-table"
+);
+
+const tableWeatherDetails = document.getElementById("table-weather-details");
+
+const closeWeatherDetailsTable = document.getElementById(
+   "close-weather-details-table"
+);
+
+closeWeatherDetailsTable.addEventListener("click", () => {
+   containerFooterBodyTable.style.display = "none";
+   containerFooterBody.style.display = "none";
+});
+
+const radio12hours = document.getElementById("radio-12hours");
+
 function drawWeatherDetailsTable(data) {
-   containerWeatherDetails.style.display = "block";
-   containerWeatherDetailsTable.style.display = "block";
+   containerFooterBody.style.display = "block";
+   containerFooterBodyTable.style.display = "block";
 
    tableWeatherDetails.innerHTML = "";
    const tempRowHour = document.createElement("tr");
@@ -158,22 +179,15 @@ function drawWeatherDetailsTable(data) {
 
 let weatherList = [];
 function getWeather5days() {
-   let long;
-   let lat;
-   const API_Key_Openweather = "8fa1f9321e28807ef94ed3e41e70023b";
-
-   let srcWeatherIcon = "https://openweathermap.org/img/wn/10d@2x.png";
-
    for (const radioButton of radioButtonsWeatherDetails) {
-      // console.log("radioButton: ", radioButton);
       radioButton.checked = false;
    }
    radio12hours.checked = true;
 
    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-         long = position.coords.longitude;
-         lat = position.coords.latitude;
+         const long = position.coords.longitude;
+         const lat = position.coords.latitude;
 
          const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
 
@@ -183,28 +197,12 @@ function getWeather5days() {
             })
             .then((response) => {
                weatherList = response.list;
+               // console.log("weatherList: ", weatherList);
                drawWeatherDetailsTable(weatherList.slice(0, 5));
             });
       });
    }
 }
-
-const matchFlag = (countryAbbreviation) => {
-   const tempCountryAbbreviation = countryAbbreviation.trim();
-
-   for (let i = 0; i < countryList.length; i++)
-      if (
-         tempCountryAbbreviation.toUpperCase() == countryList[i].cca2 ||
-         tempCountryAbbreviation == countryList[i].flags.png
-      )
-         return countryList[i].flags.png;
-   return "https://flagcdn.com/w320/nl.png";
-};
-
-setInterval(() => {
-   console.log("Refreshing weather...");
-   getWeather();
-}, 2000000);
 
 const radioButtonsWeatherDetails = document.querySelectorAll(
    'input[name="radio-hours"]'
@@ -233,36 +231,70 @@ function changeHours(e) {
    }
 }
 
+/* ----------------------------------------------------------- */
+/*                  Weather Graph Section                      */
+/* ----------------------------------------------------------- */
+const infoWeatherIconGraph = document.getElementById("info-weather-icon-graph");
+infoWeatherIconGraph.addEventListener("click", getWeather5daysGraph);
+
+const containerFooterBodyGraph = document.getElementById(
+   "container-footer-body-graph"
+);
+
 const closeWeatherDetailsGraph = document.getElementById(
    "close-weather-details-graph"
 );
 
 closeWeatherDetailsGraph.addEventListener("click", () => {
-   containerWeatherDetailsGraph.style.display = "none";
-   containerWeatherDetails.style.display = "none";
+   containerFooterBodyGraph.style.display = "none";
+   containerFooterBody.style.display = "none";
 });
 
-const infoWeatherIconGraph = document.getElementById("info-weather-icon-graph");
-infoWeatherIconGraph.addEventListener("click", drawWeatherDetailsGraph);
-const containerWeatherDetailsGraph = document.getElementById(
-   "container-weather-details-graph"
-);
-
+let myChart = null;
 function drawWeatherDetailsGraph(data) {
-   containerWeatherDetailsGraph.style.display = "block";
-   containerWeatherDetails.style.display = "block";
+   containerFooterBodyGraph.style.display = "flex";
+   containerFooterBody.style.display = "block";
 
    const ctx = document.getElementById("canvas-weather-details");
 
-   chartWeather = new Chart(ctx, {
+   if (myChart != null) myChart.destroy();
+
+   console.log("data: ", data);
+
+   let labelsHours = [];
+   let dataHeat = [];
+   data.forEach((element) => {
+      const getHoursFromDate = new Date(element.dt_txt).getHours();
+      const getMinutesFromDate = new Date(element.dt_txt).getMinutes();
+      const convertHours =
+         getHoursFromDate < 10 ? "0" + getHoursFromDate : getHoursFromDate;
+      const convertMinutes =
+         getMinutesFromDate < 10
+            ? "0" + getMinutesFromDate
+            : getMinutesFromDate;
+      // tempColHour.innerText = convertHours + ":" + convertMinutes;
+      labelsHours.push(convertHours + ":" + convertMinutes);
+
+      const tempHeatValue = Math.round(element.main.temp);
+      // const convertHeat =
+      //    tempHeatValue > 9 ? tempHeatValue : "0" + tempHeatValue;
+      dataHeat.push(tempHeatValue);
+   });
+
+   console.log("labelsHours: ", labelsHours);
+   console.log("dataHeat: ", dataHeat);
+
+   myChart = new Chart(ctx, {
       type: "bar",
       data: {
-         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+         // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+         labels: labelsHours,
          datasets: [
             {
-               label: "# of Votes",
-               data: [12, 19, 3, 5, 2, 3],
-               borderWidth: 1,
+               label: "5 Days Forecast",
+               // data: [12, 19, 3, 5, 2, 3],
+               data: dataHeat,
+               borderWidth: 50,
             },
          ],
       },
@@ -275,3 +307,65 @@ function drawWeatherDetailsGraph(data) {
       },
    });
 }
+
+let weatherListGraph = [];
+function getWeather5daysGraph() {
+   // console.log("uuuuuuuuuuuuu");
+   if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+         const long = position.coords.longitude;
+         const lat = position.coords.latitude;
+
+         // console.log("long", long);
+         // console.log("lat", lat);
+
+         const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
+
+         // console.log("urlFiveDays", urlFiveDays);
+
+         const currentWeather = fetch(urlFiveDays)
+            .then((data) => {
+               return data.json();
+            })
+            .then((response) => {
+               weatherListGraph = response.list;
+               // console.log("response: ", response.list);
+               // console.log("weatherList: ", weatherList);
+               drawWeatherDetailsGraph(weatherListGraph);
+            });
+      });
+   }
+}
+
+// function getWeather() {
+//    let long;
+//    let lat;
+
+//    let srcWeatherIcon = "https://openweathermap.org/img/wn/10d@2x.png";
+
+//    if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition((position) => {
+//          long = position.coords.longitude;
+//          lat = position.coords.latitude;
+
+//          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
+
+//          const currentWeather = fetch(url)
+//             .then((data) => {
+//                return data.json();
+//             })
+//             .then((response) => {
+//                console.log(response);
+//                const { main, name, weather, sys } = response;
+//                locationTimezone.innerHTML = `(${name} / ${sys.country})`;
+//                temperatureDegree.innerHTML = Math.round(main.temp);
+//                temperatureDescription.innerHTML = weather[0].description;
+//                currentWeatherIcon.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+//                flagIcon.src = matchFlag(sys.country);
+//             })
+//             .catch((err) => {
+//                console.log("Error: ", err);
+//             });
+//       });
+//    }
+// }

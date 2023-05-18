@@ -75,23 +75,27 @@
                         
             <div class="container-footer-top-left">
                <h3>Weather NOW</h3>
-               <h1 id="location-timezone">Timezone/Country</h1>
+               <h1 id="location-timezone">City</h1>
                <img id="flag-icon" src="https://flagcdn.com/w320/nl.png" alt="flag">  
                <h2 id="temperature-degree">34</h2>
                <span id="temperature-symbol">&#8451</span>
             </div>
 
-            <div class="container-footer-top-middle">
-               <div class="temperature-description">It's too cold here.</div>
-               <img id="current-weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="clear">
+            <div class="wrapper-footer-middle-right">
+               <div class="container-footer-top-middle">
+                  <div id="temperature-description">It's too cold here.</div>
+                  <img id="current-weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="clear">
+               </div>
+   
+               <div class="container-footer-top-right">
+                  <img id="refresh-weather-icon" src="./images/refresh.png" alt="refresh">
+                  <img id="info-weather-icon-table" src="./images/windows-table-icon-3.png" alt="table icon">
+                  <img id="info-weather-icon-graph" src="./images/business-graph-business-growth-growth-icon-pictures-8.png" alt="table icon">
+               </div>  
+            </div>
             </div>
 
-            <div class="container-footer-top-right">
-               <img id="refresh-weather-icon" src="./images/refresh.png" alt="refresh">
-               <img id="info-weather-icon-table" src="./images/windows-table-icon-3.png" alt="table icon">
-               <img id="info-weather-icon-graph" src="./images/business-graph-business-growth-growth-icon-pictures-8.png" alt="table icon">
-            </div>  
-         </div>
+
 
          <div class="container-footer-body" id="container-footer-body">
             <div id="container-footer-body-table">
@@ -150,8 +154,8 @@
             </div>
 
             <div id="container-footer-body-graph">
-               <img id="close-weather-details-graph" src="./images/Button-Close-icon.png" alt="flag">
                <canvas id="canvas-weather-details"> </canvas>
+               <img id="close-weather-details-graph" src="./images/Button-Close-icon.png" alt="flag">
             </div>
 
          </div>

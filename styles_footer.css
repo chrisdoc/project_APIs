@@ -31,8 +31,8 @@
 .container-footer-top-left {
    display: flex;
    align-items: center;
-   background-color: cadetblue;
-   width: 90%;
+   /* background-color: cadetblue; */
+   /* width: 90%; */
    padding-left: 20px;
 }
 
@@ -47,6 +47,7 @@
 #flag-icon {
    height: 30px;
    margin-right: 20px;
+   border: 1px solid white;
 }
 
 #temperature-degree {
@@ -57,17 +58,27 @@
    font-size: 36px;
 }
 
+/*           Footer Top Middle and Right Wrapper               */
+/* ----------------------------------------------------------- */
+.wrapper-footer-middle-right {
+   display: flex;
+   width: 400px;
+   /* border: 2px solid red; */
+   margin-left: auto;
+}
+
 /*                       Footer Top Middle                     */
 /* ----------------------------------------------------------- */
 .container-footer-top-middle {
-   width: 230px;
+   /* width: 230px; */
    display: flex;
    align-items: center;
    justify-content: space-around;
-   background-color: black;
+   /* background-color: black; */
+   margin-left: 20px;
 }
 
-.temperature-description {
+#temperature-description {
    font-weight: bold;
 }
 
@@ -78,11 +89,12 @@
 /*                       Footer Top Right                      */
 /* ----------------------------------------------------------- */
 .container-footer-top-right {
-   width: 170px;
+   width: 200px;
    display: flex;
    align-items: center;
    justify-content: space-evenly;
-   background-color: bisque;
+   /* background-color: bisque; */
+   margin-left: auto;
 }
 
 #refresh-weather-icon {
@@ -90,7 +102,7 @@
 }
 
 #refresh-weather-icon:hover {
-   transform: scale(1.5);
+   transform: scale(1.8);
    transition-timing-function: ease-in-out;
    transition-duration: 0.4s;
    cursor: pointer;
@@ -101,7 +113,7 @@
 }
 
 #info-weather-icon-table:hover {
-   transform: scale(2);
+   transform: scale(1.5);
    transition-timing-function: ease-in-out;
    transition-duration: 0.4s;
    cursor: pointer;
@@ -112,16 +124,15 @@
 }
 
 #info-weather-icon-graph:hover {
-   transform: scale(2);
+   transform: scale(1.5);
    transition-timing-function: ease-in-out;
    transition-duration: 0.4s;
    cursor: pointer;
 }
 
 /* ----------------------------------------------------------- */
-/*                          Footer Body                         */
+/*                          Footer Body                        */
 /* ----------------------------------------------------------- */
-
 #container-footer-body {
    display: none;
    height: 250px;
@@ -313,8 +324,13 @@ table {
    }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
    .container-footer-top {
       flex-direction: column;
+      height: 80px;
+   }
+
+   .wrapper-footer-middle-right {
+      margin-left: 20px;
    }
 }

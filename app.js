@@ -1,7 +1,7 @@
 import { moviesFromTMDB } from "./utils_tmdb.js";
 import { moviesFromRAPID } from "./utils_rapid.js";
 import { renderModalForm } from "./modal_form.js";
-// import { API_Key_Openweather } from "./utils_weather.js";
+import { getWeatherData } from "./utils_weather.js";
 
 const submitButton = document.getElementById("submit-button");
 const searchMovieInput = document.getElementById("search-movie-input");
@@ -15,6 +15,8 @@ async function main() {
       radioButton.addEventListener("change", changeAPI);
 
    renderMovies(await moviesFromTMDB("discover_mode"));
+
+   const temp = getWeatherData();
 }
 
 async function getMovies(searchTerm) {
