@@ -39,19 +39,49 @@ async function renderMovies(movieList) {
             const movieDiv = document.createElement("div");
             movieDiv.classList.add("movie");
 
-            movieDiv.innerHTML = `
-               <img src=${element.moviePoster} alt=${element.movieTitle} />
-               <div class="movie-info">
-                  <h2>${element.movieTitle}</h2>
-                  <span>${element.movieRating}</span>
-               </div>
+            const moviePoster = document.createElement("img");
+            moviePoster.src = element.moviePoster;
+            moviePoster.alt = element.movieTitle;
+            movieDiv.appendChild(moviePoster);
+
+            const movieInfo = document.createElement("div");
+            movieInfo.classList.add("movie-info");
+            const movieInfoH2 = document.createElement("h2");
+            movieInfoH2.textContent = element.movieTitle;
+            movieInfo.appendChild(movieInfoH2);
+
+            const movieInfoSpan = document.createElement("span");
+            movieInfoSpan.textContent = element.movieRating;
+
+            movieInfoSpan.style.position = "absolute";
+            movieInfoSpan.style.right = "10px";
+            movieInfoSpan.style.top = "10px";
+
+            movieInfo.appendChild(movieInfoSpan);
+
+            const movieDate = document.createElement("p");
+            movieDate.textContent = element.movieDate;
+            movieInfo.appendChild(movieDate);
+
+            movieDiv.appendChild(movieInfo);
+
+            movieDiv.innerHTML += `
                <article data-overview="${element.movieOverview}"></article>
-               <article data-year="${element.movieDate}"></article>
-               `;
+               <article data-year="${element.movieDate}"></article>`;
 
             movieDiv.addEventListener("click", (e) => {
-               renderModalForm(e);
+               if (e.target.tagName === "IMG")
+                  renderModalForm(createInfoObject(e));
             });
+
+            movieDiv.addEventListener("mouseenter", (e) => {
+               e.target.children[1].style.display = "flex";
+            });
+
+            movieDiv.addEventListener("mouseleave", (e) => {
+               e.target.children[1].style.display = "none";
+            });
+
             mainSection.appendChild(movieDiv);
          });
       } else {
@@ -60,7 +90,7 @@ async function renderMovies(movieList) {
          );
       }
    } catch (error) {
-      renderModalForm("render_error", error.message);
+      renderModalForm(createErrorObject(error.message));
    }
 }
 
@@ -68,6 +98,100 @@ async function changeAPI(e) {
    tmdbSelected = this.value === "tmdb";
    renderMovies(await getMovies(searchMovieInput.value));
 }
+
+function createInfoObject(e) {
+   return {
+      form: {
+         border: "5px solid white",
+         borderRadius: "10px",
+         padding: "20px",
+      },
+      header: "Movie Details",
+      image: {
+         display: "block",
+         source: e.target.parentNode.children[0].src,
+      },
+      title: e.target.parentNode.children[1].firstElementChild.innerHTML,
+      year: e.target.parentNode.children[3].getAttribute("data-year"),
+      rating: e.target.parentNode.children[1].children[1].innerHTML,
+      genre: "",
+      director: "",
+      overviewHeader: "",
+      overview: e.target.parentNode.children[2].getAttribute("data-overview"),
+   };
+}
+
+function createErrorObject(errorMessage) {
+   return {
+      form: {
+         border: "10px solid orange",
+         borderRadius: "100px",
+         padding: "50px",
+      },
+      header: "!!! ERROR !!!",
+      image: {
+         display: "none",
+         source: "",
+      },
+      title: "",
+      year: "",
+      rating: "",
+      genre: "",
+      director: "",
+      overviewHeader: "",
+      overview: `${errorMessage}`,
+   };
+}
+
+// async function renderMovies(movieList) {
+//    try {
+//       const mainSection = document.getElementById("main");
+//       if (movieList.length > 0) {
+//          mainSection.innerHTML = ``;
+//          movieList.forEach((element) => {
+//             const movieDiv = document.createElement("div");
+//             movieDiv.classList.add("movie");
+
+//             const moviePoster = document.createElement("img");
+//             moviePoster.src = element.moviePoster;
+//             moviePoster.alt = element.movieTitle;
+
+//             movieDiv.innerHTML = `
+//             <img src=${element.moviePoster} alt=${element.movieTitle} />
+//                <div class="movie-info">
+//                   <h2>${element.movieTitle}</h2>
+//                   <span>${element.movieRating}</span>
+//                </div>
+//                <article data-overview="${element.movieOverview}"></article>
+//                <article data-year="${element.movieDate}"></article>
+//                `;
+
+//             const test = document.getElementsByTagName("img");
+//             console.log("test: ", test);
+
+//             movieDiv.addEventListener("click", (e) => {
+//                renderModalForm(createInfoObject(e));
+//             });
+
+//             movieDiv.addEventListener("mouseenter", (e) => {
+//                e.target.children[1].style.display = "flex";
+//             });
+
+//             movieDiv.addEventListener("mouseleave", (e) => {
+//                e.target.children[1].style.display = "none";
+//             });
+
+//             mainSection.appendChild(movieDiv);
+//          });
+//       } else {
+//          throw new Error(
+//             "Please input a search term in the Search Movie section, Movie Title."
+//          );
+//       }
+//    } catch (error) {
+//       renderModalForm(createErrorObject(error.message));
+//    }
+// }
 
 // /* -------------------------------------------------------- */
 // /* ---------------- Weather Info Section ------------------ */

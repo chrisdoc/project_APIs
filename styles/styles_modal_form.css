@@ -15,8 +15,19 @@
    box-shadow: 10px 10px 5px #888888;
 
    position: fixed;
-   left: 20%;
-   top: 10%;
+   left: calc(50% - 350px);
+   top: 100px;
+   /* position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%); */
+
+   /* position: fixed; */
+   /* width: 600px; */
+   /* top: 40px; */
+   /* left: calc(50% - 300px); */
+   /* bottom: 40px; */
+   /* z-index: 100; */
 }
 
 #container-modal-form-header {

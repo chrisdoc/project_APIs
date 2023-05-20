@@ -294,7 +294,7 @@ function drawWeatherDetailsGraph(data) {
                label: "5 Days Forecast",
                // data: [12, 19, 3, 5, 2, 3],
                data: dataHeat,
-               borderWidth: 50,
+               // borderWidth: 50,
             },
          ],
       },

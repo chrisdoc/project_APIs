@@ -44,18 +44,38 @@ body {
    border-radius: 10px;
 }
 
+/* .movie img:hover {
+   transform: scale(1.2);
+   transition-timing-function: ease-in-out;
+   transition-duration: 0.7s;
+   overflow-y: visible;
+   cursor: pointer;
+   z-index: 111;
+} */
+
 .movie-info {
+   display: none;
    color: #eee;
-   display: flex;
+   /* display: flex; */
    align-items: center;
    justify-content: space-between;
    padding: 0.5rem 1rem 1rem;
+}
+
+.movie-info h2 {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
+}
+
+.movie-info:hover {
+   cursor: default;
 }
 
 .movie-info span {
    background-color: blue;
    padding: 5px;
    border-radius: 10px;
+   border: 3px solid white;
 }
 
 .overview {

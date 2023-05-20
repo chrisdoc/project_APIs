@@ -1,0 +1,54 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+.container-search {
+   background-color: dodgerblue;
+   height: 60px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#form-search {
+   display: flex;
+   width: 90%;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   /* background-color: aquamarine; */
+}
+
+#h1-caption {
+   color: white;
+   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+   font-weight: bolder;
+   font-size: 40px;
+   margin-right: 25px;
+}
+
+#input-search {
+   /* height: 60%; */
+   width: 60%;
+   font-size: 18px;
+   padding: 10px;
+   /* border-radius: 3px; */
+}
+
+#image-search {
+   height: 20px;
+   position: relative;
+   right: 30px;
+   /* top: 18px; */
+}
+
+.wr-time-slot-list__time-slots {
+   display: flex;
+}
+
+.wr-time-slot {
+   width: 50px;
+}

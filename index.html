@@ -5,10 +5,11 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>MyFlix</title>
-      <link rel="stylesheet" href="styles_main_body.css" />
-      <link rel="stylesheet" href="styles_header.css" />
-      <link rel="stylesheet" href="styles_footer.css" />
-      <link rel="stylesheet" href="styles_modal_form.css" />
+      <link rel="stylesheet" href="./styles/styles_main_body.css" />
+      <link rel="stylesheet" href="./styles/styles_header.css" />
+      <link rel="stylesheet" href="./styles/styles_footer.css" />
+      <link rel="stylesheet" href="./styles/styles_weather.css" />
+      <link rel="stylesheet" href="./styles/styles_modal_form.css" />
    </head>
    <body>
 
@@ -17,12 +18,13 @@
       <!-- ----------------------------------------------------- -->      
       <header class="sticky-header">
          <form id="form-header-search">
-            <label for="search-movie-input">Search Movie</label>
+            <img src="./images/myflix.jpg" alt="" id="logo-myflix">
+            <!-- <label for="search-movie-input">Search Movie</label> -->
             <input
                type="search"
                id="search-movie-input"
                name="search-movie"
-               placeholder="Movie Title"
+               placeholder="Search movie"
             />
             <input type="submit" id="submit-button" />
          </form>
@@ -36,7 +38,7 @@
                value="tmdb"
                checked
             />
-            <label for="radio-TMDB">TMDB</label><br />
+            <label for="radio-TMDB">Tmdb API</label><br />
             <input
                type="radio"
                id="radio-rapid"
@@ -94,8 +96,6 @@
                </div>  
             </div>
             </div>
-
-
 
          <div class="container-footer-body" id="container-footer-body">
             <div id="container-footer-body-table">

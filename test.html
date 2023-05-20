@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="./styles/test.css" />
+   </head>
+   <body>
+      <header></header>
+      <main>
+         <div class="container-search">
+            <form action="submit" id="form-search">
+               <h1 id="h1-caption">WEATHER</h1>
+               <input
+                  type="search"
+                  name=""
+                  id="input-search"
+                  placeholder="Enter a city"
+               />
+               <img
+                  src="./images/magnifyingglass_102622.png"
+                  alt="search"
+                  id="image-search"
+               />
+            </form>
+         </div>
+
+         <div class="container-slider">
+            <ol
+               class="wr-time-slot-list__time-slots"
+               aria-label="Hour by hour forecast for Sunday 21st May"
+            >
+               <li class="wr-time-slot wr-js-time-slot">
+                  <button class="wr-time-slot__inner" aria-expanded="false">
+                     <div class="wr-time-slot-primary wr-js-time-slot-primary">
+                        <div
+                           class="wr-time-slot-primary__temperature-bar wr-time-slot-primary__temperature-bar--temp13to14"
+                        ></div>
+                        <div
+                           class="wr-time-slot-primary__content wr-time-slot-primary__content--temp13to14"
+                        >
+                           <div class="wr-time-slot-primary__title">
+                              <span class="wr-time-slot-primary__time"
+                                 ><span
+                                    class="wr-time-slot-primary__hours wr-u-font-weight-500"
+                                    >06</span
+                                 ><span class="wr-hide-visually">:</span
+                                 ><span class="wr-time-slot-primary__minutes"
+                                    >00</span
+                                 ></span
+                              >
+                           </div>
+                           <div class="wr-time-slot-primary__label"></div>
+                           <span class="wr-hide-visually">,</span>
+                           <div class="wr-time-slot-primary__body">
+                              <div
+                                 class="wr-time-slot-primary__weather-type-description"
+                              >
+                                 Light Cloud
+                              </div>
+                              <div class="wr-time-slot-primary__weather-curve">
+                                 <div
+                                    class="wr-time-slot-primary__weather-curve-scale"
+                                 >
+                                    <div
+                                       class="wr-time-slot-primary__weather-curve-item"
+                                       style="bottom: 0%"
+                                    >
+                                       <div
+                                          class="wr-weather-type wr-weather-type--time-slot"
+                                       >
+                                          <div
+                                             class="wr-weather-type__text"
+                                             aria-hidden="true"
+                                          >
+                                             Light Cloud
+                                          </div>
+                                          <div
+                                             role="img"
+                                             class="wr-weather-type__icon"
+                                             aria-label="Light Cloud"
+                                             title="Light Cloud"
+                                          >
+                                             <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40px"
+                                                height="40px"
+                                                focusable="false"
+                                             >
+                                                <switch>
+                                                   <use
+                                                      xlink:href="#wr-icon-weather-type--7"
+                                                   ></use>
+                                                   <foreignObject
+                                                      >Light Cloud
+                                                   </foreignObject>
+                                                </switch>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="wr-time-slot-primary__temperature"
+                                       >
+                                          <span
+                                             class="wr-value--temperature wr-temperature--time-slot"
+                                             ><span
+                                                class="wr-value--temperature--c"
+                                                >13°</span
+                                             ><span class="wr-hide"> </span
+                                             ><span
+                                                class="wr-value--temperature--f"
+                                                >55°</span
+                                             ></span
+                                          >
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div
+                                 class="wr-time-slot-primary__precipitation wr-time-slot-primary__precipitation--grey gel-brevier"
+                              >
+                                 <div>
+                                    <svg
+                                       xmlns="http://www.w3.org/2000/svg"
+                                       width="16px"
+                                       height="16px"
+                                       class="wr-time-slot-primary__precipitation__icon"
+                                       focusable="false"
+                                    >
+                                       <switch>
+                                          <use
+                                             xlink:href="#wr-icon-rain"
+                                             class="wr-rain-grey"
+                                          ></use>
+                                       </switch>
+                                    </svg>
+                                 </div>
+                                 <div class="wr-u-font-weight-500">
+                                    0%<span class="wr-hide-visually"
+                                       >chance of precipitation</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div class="wr-time-slot-primary__wind-speed">
+                                 <div
+                                    class="wr-wind-speed wind-rose wind-rose--direction-n wind-rose--average"
+                                 >
+                                    <span class="wr-hide-visually"
+                                       >Wind speed</span
+                                    ><span class="wr-wind-speed__description"
+                                       ><span class="wr-wind-speed__container"
+                                          ><span class="wr-wind-speed__value"
+                                             ><span
+                                                data-unit="mph"
+                                                class="wr-value--windspeed wr-value--windspeed--mph"
+                                                >8<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >mph</span
+                                                ></span
+                                             ><span
+                                                class="wr-unit__type-separator"
+                                             ></span
+                                             ><span
+                                                data-unit="kph"
+                                                class="wr-value--windspeed wr-value--windspeed--kph"
+                                                >13<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >km/h</span
+                                                ></span
+                                             ></span
+                                          ></span
+                                       ><span
+                                          class="wind-rose__direction-abbr"
+                                          aria-hidden="true"
+                                       >
+                                          <!-- -->NNE</span
+                                       ></span
+                                    ><span class="wr-wind-speed__icon"
+                                       ><svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="40px"
+                                          height="40px"
+                                          class="wr-wind-speed__icon__svg"
+                                          focusable="false"
+                                       >
+                                          <switch>
+                                             <use
+                                                xlink:href="#wr-icon-wind-direction--NNE"
+                                                class="wr-wind-type-wind"
+                                             ></use>
+                                          </switch></svg
+                                       ><span class="wr-wind-speed__value"
+                                          ><span
+                                             data-unit="mph"
+                                             class="wr-value--windspeed wr-value--windspeed--mph"
+                                             >8<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >mph</span
+                                             ></span
+                                          ><span
+                                             class="wr-unit__type-separator"
+                                          ></span
+                                          ><span
+                                             data-unit="kph"
+                                             class="wr-value--windspeed wr-value--windspeed--kph"
+                                             >13<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >km/h</span
+                                             ></span
+                                          ></span
+                                       ></span
+                                    ><span class="wr-hide-visually"
+                                       >North North Easterly</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually"
+                                 >, More details<!-- -->&nbsp;</span
+                              >
+                           </div>
+                        </div>
+                     </div>
+                     <div
+                        class="wr-time-slot-secondary wr-js-time-slot-secondary gel-long-primer"
+                     >
+                        <div class="wr-time-slot-secondary__inner">
+                           <span
+                              class="wr-time-slot-secondary__weather-type-text gel-pica-bold"
+                              >Light cloud and a gentle breeze</span
+                           >
+                           <div
+                              class="wr-time-slot-secondary__bottom-section-container"
+                           >
+                              <div
+                                 class="wr-time-slot-secondary__bottom-section"
+                              >
+                                 <dl class="wr-time-slot-secondary__list">
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Humidity
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       85%
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Pressure
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       1019 mb
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Visibility
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       Good
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__feels-like-temperature wr-time-slot-secondary__bottom-section"
+                              >
+                                 Temperature feels like
+                                 <span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--c"
+                                    >12°</span
+                                 ><span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--f"
+                                    >54°</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__chance-of-rain wr-time-slot-secondary__bottom-section"
+                              >
+                                 <span
+                                    class="wr-time-slot-secondary__chance-of-rain-value"
+                                    >Precipitation is not expected</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__wind-direction wr-time-slot-secondary__bottom-section gel-long-primer"
+                              >
+                                 A gentle breeze from the north north east
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </button>
+               </li>
+
+               <li class="wr-time-slot wr-js-time-slot">
+                  <button class="wr-time-slot__inner" aria-expanded="false">
+                     <div class="wr-time-slot-primary wr-js-time-slot-primary">
+                        <div
+                           class="wr-time-slot-primary__temperature-bar wr-time-slot-primary__temperature-bar--temp13to14"
+                        ></div>
+                        <div
+                           class="wr-time-slot-primary__content wr-time-slot-primary__content--temp13to14"
+                        >
+                           <div class="wr-time-slot-primary__title">
+                              <span class="wr-time-slot-primary__time"
+                                 ><span
+                                    class="wr-time-slot-primary__hours wr-u-font-weight-500"
+                                    >07</span
+                                 ><span class="wr-hide-visually">:</span
+                                 ><span class="wr-time-slot-primary__minutes"
+                                    >00</span
+                                 ></span
+                              >
+                           </div>
+                           <div class="wr-time-slot-primary__label"></div>
+                           <span class="wr-hide-visually">,</span>
+                           <div class="wr-time-slot-primary__body">
+                              <div
+                                 class="wr-time-slot-primary__weather-type-description"
+                              >
+                                 Light Cloud
+                              </div>
+                              <div class="wr-time-slot-primary__weather-curve">
+                                 <div
+                                    class="wr-time-slot-primary__weather-curve-scale"
+                                 >
+                                    <div
+                                       class="wr-time-slot-primary__weather-curve-item"
+                                       style="bottom: 0%"
+                                    >
+                                       <div
+                                          class="wr-weather-type wr-weather-type--time-slot"
+                                       >
+                                          <div
+                                             class="wr-weather-type__text"
+                                             aria-hidden="true"
+                                          >
+                                             Light Cloud
+                                          </div>
+                                          <div
+                                             role="img"
+                                             class="wr-weather-type__icon"
+                                             aria-label="Light Cloud"
+                                             title="Light Cloud"
+                                          >
+                                             <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40px"
+                                                height="40px"
+                                                focusable="false"
+                                             >
+                                                <switch>
+                                                   <use
+                                                      xlink:href="#wr-icon-weather-type--7"
+                                                   ></use>
+                                                   <foreignObject
+                                                      >Light Cloud
+                                                   </foreignObject>
+                                                </switch>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="wr-time-slot-primary__temperature"
+                                       >
+                                          <span
+                                             class="wr-value--temperature wr-temperature--time-slot"
+                                             ><span
+                                                class="wr-value--temperature--c"
+                                                >13°</span
+                                             ><span class="wr-hide"> </span
+                                             ><span
+                                                class="wr-value--temperature--f"
+                                                >56°</span
+                                             ></span
+                                          >
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div
+                                 class="wr-time-slot-primary__precipitation wr-time-slot-primary__precipitation--grey gel-brevier"
+                              >
+                                 <div>
+                                    <svg
+                                       xmlns="http://www.w3.org/2000/svg"
+                                       width="16px"
+                                       height="16px"
+                                       class="wr-time-slot-primary__precipitation__icon"
+                                       focusable="false"
+                                    >
+                                       <switch>
+                                          <use
+                                             xlink:href="#wr-icon-rain"
+                                             class="wr-rain-grey"
+                                          ></use>
+                                       </switch>
+                                    </svg>
+                                 </div>
+                                 <div class="wr-u-font-weight-500">
+                                    0%<span class="wr-hide-visually"
+                                       >chance of precipitation</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div class="wr-time-slot-primary__wind-speed">
+                                 <div
+                                    class="wr-wind-speed wind-rose wind-rose--direction-n wind-rose--average"
+                                 >
+                                    <span class="wr-hide-visually"
+                                       >Wind speed</span
+                                    ><span class="wr-wind-speed__description"
+                                       ><span class="wr-wind-speed__container"
+                                          ><span class="wr-wind-speed__value"
+                                             ><span
+                                                data-unit="mph"
+                                                class="wr-value--windspeed wr-value--windspeed--mph"
+                                                >10<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >mph</span
+                                                ></span
+                                             ><span
+                                                class="wr-unit__type-separator"
+                                             ></span
+                                             ><span
+                                                data-unit="kph"
+                                                class="wr-value--windspeed wr-value--windspeed--kph"
+                                                >17<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >km/h</span
+                                                ></span
+                                             ></span
+                                          ></span
+                                       ><span
+                                          class="wind-rose__direction-abbr"
+                                          aria-hidden="true"
+                                       >
+                                          <!-- -->NNE</span
+                                       ></span
+                                    ><span class="wr-wind-speed__icon"
+                                       ><svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="40px"
+                                          height="40px"
+                                          class="wr-wind-speed__icon__svg"
+                                          focusable="false"
+                                       >
+                                          <switch>
+                                             <use
+                                                xlink:href="#wr-icon-wind-direction--NNE"
+                                                class="wr-wind-type-wind"
+                                             ></use>
+                                          </switch></svg
+                                       ><span class="wr-wind-speed__value"
+                                          ><span
+                                             data-unit="mph"
+                                             class="wr-value--windspeed wr-value--windspeed--mph"
+                                             >10<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >mph</span
+                                             ></span
+                                          ><span
+                                             class="wr-unit__type-separator"
+                                          ></span
+                                          ><span
+                                             data-unit="kph"
+                                             class="wr-value--windspeed wr-value--windspeed--kph"
+                                             >17<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >km/h</span
+                                             ></span
+                                          ></span
+                                       ></span
+                                    ><span class="wr-hide-visually"
+                                       >North North Easterly</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually"
+                                 >, More details<!-- -->&nbsp;</span
+                              >
+                           </div>
+                        </div>
+                     </div>
+                     <div
+                        class="wr-time-slot-secondary wr-js-time-slot-secondary gel-long-primer"
+                     >
+                        <div class="wr-time-slot-secondary__inner">
+                           <span
+                              class="wr-time-slot-secondary__weather-type-text gel-pica-bold"
+                              >Light cloud and a gentle breeze</span
+                           >
+                           <div
+                              class="wr-time-slot-secondary__bottom-section-container"
+                           >
+                              <div
+                                 class="wr-time-slot-secondary__bottom-section"
+                              >
+                                 <dl class="wr-time-slot-secondary__list">
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Humidity
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       85%
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Pressure
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       1019 mb
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Visibility
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       Good
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__feels-like-temperature wr-time-slot-secondary__bottom-section"
+                              >
+                                 Temperature feels like
+                                 <span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--c"
+                                    >13°</span
+                                 ><span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--f"
+                                    >55°</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__chance-of-rain wr-time-slot-secondary__bottom-section"
+                              >
+                                 <span
+                                    class="wr-time-slot-secondary__chance-of-rain-value"
+                                    >Precipitation is not expected</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__wind-direction wr-time-slot-secondary__bottom-section gel-long-primer"
+                              >
+                                 A gentle breeze from the north north east
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </button>
+               </li>
+               <li class="wr-time-slot wr-js-time-slot">
+                  <button class="wr-time-slot__inner" aria-expanded="false">
+                     <div class="wr-time-slot-primary wr-js-time-slot-primary">
+                        <div
+                           class="wr-time-slot-primary__temperature-bar wr-time-slot-primary__temperature-bar--temp13to14"
+                        ></div>
+                        <div
+                           class="wr-time-slot-primary__content wr-time-slot-primary__content--temp13to14"
+                        >
+                           <div class="wr-time-slot-primary__title">
+                              <span class="wr-time-slot-primary__time"
+                                 ><span
+                                    class="wr-time-slot-primary__hours wr-u-font-weight-500"
+                                    >08</span
+                                 ><span class="wr-hide-visually">:</span
+                                 ><span class="wr-time-slot-primary__minutes"
+                                    >00</span
+                                 ></span
+                              >
+                           </div>
+                           <div class="wr-time-slot-primary__label"></div>
+                           <span class="wr-hide-visually">,</span>
+                           <div class="wr-time-slot-primary__body">
+                              <div
+                                 class="wr-time-slot-primary__weather-type-description"
+                              >
+                                 Light Cloud
+                              </div>
+                              <div class="wr-time-slot-primary__weather-curve">
+                                 <div
+                                    class="wr-time-slot-primary__weather-curve-scale"
+                                 >
+                                    <div
+                                       class="wr-time-slot-primary__weather-curve-item"
+                                       style="bottom: 14.2857%"
+                                    >
+                                       <div
+                                          class="wr-weather-type wr-weather-type--time-slot"
+                                       >
+                                          <div
+                                             class="wr-weather-type__text"
+                                             aria-hidden="true"
+                                          >
+                                             Light Cloud
+                                          </div>
+                                          <div
+                                             role="img"
+                                             class="wr-weather-type__icon"
+                                             aria-label="Light Cloud"
+                                             title="Light Cloud"
+                                          >
+                                             <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40px"
+                                                height="40px"
+                                                focusable="false"
+                                             >
+                                                <switch>
+                                                   <use
+                                                      xlink:href="#wr-icon-weather-type--7"
+                                                   ></use>
+                                                   <foreignObject
+                                                      >Light
+                                                      Cloud</foreignObject
+                                                   >
+                                                </switch>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="wr-time-slot-primary__temperature"
+                                       >
+                                          <span
+                                             class="wr-value--temperature wr-temperature--time-slot"
+                                             ><span
+                                                class="wr-value--temperature--c"
+                                                >14°</span
+                                             ><span class="wr-hide"> </span
+                                             ><span
+                                                class="wr-value--temperature--f"
+                                                >57°</span
+                                             ></span
+                                          >
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div
+                                 class="wr-time-slot-primary__precipitation wr-time-slot-primary__precipitation--grey gel-brevier"
+                              >
+                                 <div>
+                                    <svg
+                                       xmlns="http://www.w3.org/2000/svg"
+                                       width="16px"
+                                       height="16px"
+                                       class="wr-time-slot-primary__precipitation__icon"
+                                       focusable="false"
+                                    >
+                                       <switch>
+                                          <use
+                                             xlink:href="#wr-icon-rain"
+                                             class="wr-rain-grey"
+                                          ></use>
+                                       </switch>
+                                    </svg>
+                                 </div>
+                                 <div class="wr-u-font-weight-500">
+                                    0%<span class="wr-hide-visually"
+                                       >chance of precipitation</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div class="wr-time-slot-primary__wind-speed">
+                                 <div
+                                    class="wr-wind-speed wind-rose wind-rose--direction-n wind-rose--average"
+                                 >
+                                    <span class="wr-hide-visually"
+                                       >Wind speed</span
+                                    ><span class="wr-wind-speed__description"
+                                       ><span class="wr-wind-speed__container"
+                                          ><span class="wr-wind-speed__value"
+                                             ><span
+                                                data-unit="mph"
+                                                class="wr-value--windspeed wr-value--windspeed--mph"
+                                                >13<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >mph</span
+                                                ></span
+                                             ><span
+                                                class="wr-unit__type-separator"
+                                             ></span
+                                             ><span
+                                                data-unit="kph"
+                                                class="wr-value--windspeed wr-value--windspeed--kph"
+                                                >21<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >km/h</span
+                                                ></span
+                                             ></span
+                                          ></span
+                                       ><span
+                                          class="wind-rose__direction-abbr"
+                                          aria-hidden="true"
+                                       >
+                                          <!-- -->NNE</span
+                                       ></span
+                                    ><span class="wr-wind-speed__icon"
+                                       ><svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="40px"
+                                          height="40px"
+                                          class="wr-wind-speed__icon__svg"
+                                          focusable="false"
+                                       >
+                                          <switch>
+                                             <use
+                                                xlink:href="#wr-icon-wind-direction--NNE"
+                                                class="wr-wind-type-wind"
+                                             ></use>
+                                          </switch></svg
+                                       ><span class="wr-wind-speed__value"
+                                          ><span
+                                             data-unit="mph"
+                                             class="wr-value--windspeed wr-value--windspeed--mph"
+                                             >13<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >mph</span
+                                             ></span
+                                          ><span
+                                             class="wr-unit__type-separator"
+                                          ></span
+                                          ><span
+                                             data-unit="kph"
+                                             class="wr-value--windspeed wr-value--windspeed--kph"
+                                             >21<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >km/h</span
+                                             ></span
+                                          ></span
+                                       ></span
+                                    ><span class="wr-hide-visually"
+                                       >North North Easterly</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually"
+                                 >, More details<!-- -->&nbsp;</span
+                              >
+                           </div>
+                        </div>
+                     </div>
+                     <div
+                        class="wr-time-slot-secondary wr-js-time-slot-secondary gel-long-primer"
+                     >
+                        <div class="wr-time-slot-secondary__inner">
+                           <span
+                              class="wr-time-slot-secondary__weather-type-text gel-pica-bold"
+                              >Light cloud and a moderate breeze</span
+                           >
+                           <div
+                              class="wr-time-slot-secondary__bottom-section-container"
+                           >
+                              <div
+                                 class="wr-time-slot-secondary__bottom-section"
+                              >
+                                 <dl class="wr-time-slot-secondary__list">
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Humidity
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       81%
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Pressure
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       1019 mb
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Visibility
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       Good
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__feels-like-temperature wr-time-slot-secondary__bottom-section"
+                              >
+                                 Temperature feels like
+                                 <span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--c"
+                                    >14°</span
+                                 ><span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--f"
+                                    >57°</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__chance-of-rain wr-time-slot-secondary__bottom-section"
+                              >
+                                 <span
+                                    class="wr-time-slot-secondary__chance-of-rain-value"
+                                    >Precipitation is not expected</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__wind-direction wr-time-slot-secondary__bottom-section gel-long-primer"
+                              >
+                                 A moderate breeze from the north north east
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </button>
+               </li>
+               <li class="wr-time-slot wr-js-time-slot">
+                  <button class="wr-time-slot__inner" aria-expanded="false">
+                     <div class="wr-time-slot-primary wr-js-time-slot-primary">
+                        <div
+                           class="wr-time-slot-primary__temperature-bar wr-time-slot-primary__temperature-bar--temp15to16"
+                        ></div>
+                        <div
+                           class="wr-time-slot-primary__content wr-time-slot-primary__content--temp15to16"
+                        >
+                           <div class="wr-time-slot-primary__title">
+                              <span class="wr-time-slot-primary__time"
+                                 ><span
+                                    class="wr-time-slot-primary__hours wr-u-font-weight-500"
+                                    >09</span
+                                 ><span class="wr-hide-visually">:</span
+                                 ><span class="wr-time-slot-primary__minutes"
+                                    >00</span
+                                 ></span
+                              >
+                           </div>
+                           <div class="wr-time-slot-primary__label"></div>
+                           <span class="wr-hide-visually">,</span>
+                           <div class="wr-time-slot-primary__body">
+                              <div
+                                 class="wr-time-slot-primary__weather-type-description"
+                              >
+                                 Sunny Intervals
+                              </div>
+                              <div class="wr-time-slot-primary__weather-curve">
+                                 <div
+                                    class="wr-time-slot-primary__weather-curve-scale"
+                                 >
+                                    <div
+                                       class="wr-time-slot-primary__weather-curve-item"
+                                       style="bottom: 28.5714%"
+                                    >
+                                       <div
+                                          class="wr-weather-type wr-weather-type--time-slot"
+                                       >
+                                          <div
+                                             class="wr-weather-type__text"
+                                             aria-hidden="true"
+                                          >
+                                             Sunny Intervals
+                                          </div>
+                                          <div
+                                             role="img"
+                                             class="wr-weather-type__icon"
+                                             aria-label="Sunny Intervals"
+                                             title="Sunny Intervals"
+                                          >
+                                             <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40px"
+                                                height="40px"
+                                                focusable="false"
+                                             >
+                                                <switch>
+                                                   <use
+                                                      xlink:href="#wr-icon-weather-type--3"
+                                                   ></use>
+                                                   <foreignObject
+                                                      >Sunny
+                                                      Intervals</foreignObject
+                                                   >
+                                                </switch>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="wr-time-slot-primary__temperature"
+                                       >
+                                          <span
+                                             class="wr-value--temperature wr-temperature--time-slot"
+                                             ><span
+                                                class="wr-value--temperature--c"
+                                                >15°</span
+                                             ><span class="wr-hide"> </span
+                                             ><span
+                                                class="wr-value--temperature--f"
+                                                >59°</span
+                                             ></span
+                                          >
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div
+                                 class="wr-time-slot-primary__precipitation wr-time-slot-primary__precipitation--grey gel-brevier"
+                              >
+                                 <div>
+                                    <svg
+                                       xmlns="http://www.w3.org/2000/svg"
+                                       width="16px"
+                                       height="16px"
+                                       class="wr-time-slot-primary__precipitation__icon"
+                                       focusable="false"
+                                    >
+                                       <switch>
+                                          <use
+                                             xlink:href="#wr-icon-rain"
+                                             class="wr-rain-grey"
+                                          ></use>
+                                       </switch>
+                                    </svg>
+                                 </div>
+                                 <div class="wr-u-font-weight-500">
+                                    0%<span class="wr-hide-visually"
+                                       >chance of precipitation</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div class="wr-time-slot-primary__wind-speed">
+                                 <div
+                                    class="wr-wind-speed wind-rose wind-rose--direction-n wind-rose--average"
+                                 >
+                                    <span class="wr-hide-visually"
+                                       >Wind speed</span
+                                    ><span class="wr-wind-speed__description"
+                                       ><span class="wr-wind-speed__container"
+                                          ><span class="wr-wind-speed__value"
+                                             ><span
+                                                data-unit="mph"
+                                                class="wr-value--windspeed wr-value--windspeed--mph"
+                                                >12<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >mph</span
+                                                ></span
+                                             ><span
+                                                class="wr-unit__type-separator"
+                                             ></span
+                                             ><span
+                                                data-unit="kph"
+                                                class="wr-value--windspeed wr-value--windspeed--kph"
+                                                >19<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >km/h</span
+                                                ></span
+                                             ></span
+                                          ></span
+                                       ><span
+                                          class="wind-rose__direction-abbr"
+                                          aria-hidden="true"
+                                       >
+                                          <!-- -->NNE</span
+                                       ></span
+                                    ><span class="wr-wind-speed__icon"
+                                       ><svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="40px"
+                                          height="40px"
+                                          class="wr-wind-speed__icon__svg"
+                                          focusable="false"
+                                       >
+                                          <switch>
+                                             <use
+                                                xlink:href="#wr-icon-wind-direction--NNE"
+                                                class="wr-wind-type-wind"
+                                             ></use>
+                                          </switch></svg
+                                       ><span class="wr-wind-speed__value"
+                                          ><span
+                                             data-unit="mph"
+                                             class="wr-value--windspeed wr-value--windspeed--mph"
+                                             >12<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >mph</span
+                                             ></span
+                                          ><span
+                                             class="wr-unit__type-separator"
+                                          ></span
+                                          ><span
+                                             data-unit="kph"
+                                             class="wr-value--windspeed wr-value--windspeed--kph"
+                                             >19<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >km/h</span
+                                             ></span
+                                          ></span
+                                       ></span
+                                    ><span class="wr-hide-visually"
+                                       >North North Easterly</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually"
+                                 >, More details<!-- -->&nbsp;</span
+                              >
+                           </div>
+                        </div>
+                     </div>
+                     <div
+                        class="wr-time-slot-secondary wr-js-time-slot-secondary gel-long-primer"
+                     >
+                        <div class="wr-time-slot-secondary__inner">
+                           <span
+                              class="wr-time-slot-secondary__weather-type-text gel-pica-bold"
+                              >Sunny intervals and a gentle breeze</span
+                           >
+                           <div
+                              class="wr-time-slot-secondary__bottom-section-container"
+                           >
+                              <div
+                                 class="wr-time-slot-secondary__bottom-section"
+                              >
+                                 <dl class="wr-time-slot-secondary__list">
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Humidity
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       79%
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Pressure
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       1019 mb
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Visibility
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       Good
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__feels-like-temperature wr-time-slot-secondary__bottom-section"
+                              >
+                                 Temperature feels like
+                                 <span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--c"
+                                    >15°</span
+                                 ><span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--f"
+                                    >60°</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__chance-of-rain wr-time-slot-secondary__bottom-section"
+                              >
+                                 <span
+                                    class="wr-time-slot-secondary__chance-of-rain-value"
+                                    >Precipitation is not expected</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__wind-direction wr-time-slot-secondary__bottom-section gel-long-primer"
+                              >
+                                 A gentle breeze from the north north east
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </button>
+               </li>
+               <li class="wr-time-slot wr-js-time-slot">
+                  <button class="wr-time-slot__inner" aria-expanded="false">
+                     <div class="wr-time-slot-primary wr-js-time-slot-primary">
+                        <div
+                           class="wr-time-slot-primary__temperature-bar wr-time-slot-primary__temperature-bar--temp15to16"
+                        ></div>
+                        <div
+                           class="wr-time-slot-primary__content wr-time-slot-primary__content--temp15to16"
+                        >
+                           <div class="wr-time-slot-primary__title">
+                              <span class="wr-time-slot-primary__time"
+                                 ><span
+                                    class="wr-time-slot-primary__hours wr-u-font-weight-500"
+                                    >10</span
+                                 ><span class="wr-hide-visually">:</span
+                                 ><span class="wr-time-slot-primary__minutes"
+                                    >00</span
+                                 ></span
+                              >
+                           </div>
+                           <div class="wr-time-slot-primary__label"></div>
+                           <span class="wr-hide-visually">,</span>
+                           <div class="wr-time-slot-primary__body">
+                              <div
+                                 class="wr-time-slot-primary__weather-type-description"
+                              >
+                                 Sunny Intervals
+                              </div>
+                              <div class="wr-time-slot-primary__weather-curve">
+                                 <div
+                                    class="wr-time-slot-primary__weather-curve-scale"
+                                 >
+                                    <div
+                                       class="wr-time-slot-primary__weather-curve-item"
+                                       style="bottom: 42.8571%"
+                                    >
+                                       <div
+                                          class="wr-weather-type wr-weather-type--time-slot"
+                                       >
+                                          <div
+                                             class="wr-weather-type__text"
+                                             aria-hidden="true"
+                                          >
+                                             Sunny Intervals
+                                          </div>
+                                          <div
+                                             role="img"
+                                             class="wr-weather-type__icon"
+                                             aria-label="Sunny Intervals"
+                                             title="Sunny Intervals"
+                                          >
+                                             <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="40px"
+                                                height="40px"
+                                                focusable="false"
+                                             >
+                                                <switch>
+                                                   <use
+                                                      xlink:href="#wr-icon-weather-type--3"
+                                                   ></use>
+                                                   <foreignObject
+                                                      >Sunny
+                                                      Intervals</foreignObject
+                                                   >
+                                                </switch>
+                                             </svg>
+                                          </div>
+                                       </div>
+                                       <div
+                                          class="wr-time-slot-primary__temperature"
+                                       >
+                                          <span
+                                             class="wr-value--temperature wr-temperature--time-slot"
+                                             ><span
+                                                class="wr-value--temperature--c"
+                                                >16°</span
+                                             ><span class="wr-hide"> </span
+                                             ><span
+                                                class="wr-value--temperature--f"
+                                                >60°</span
+                                             ></span
+                                          >
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div
+                                 class="wr-time-slot-primary__precipitation wr-time-slot-primary__precipitation--grey gel-brevier"
+                              >
+                                 <div>
+                                    <svg
+                                       xmlns="http://www.w3.org/2000/svg"
+                                       width="16px"
+                                       height="16px"
+                                       class="wr-time-slot-primary__precipitation__icon"
+                                       focusable="false"
+                                    >
+                                       <switch>
+                                          <use
+                                             xlink:href="#wr-icon-rain"
+                                             class="wr-rain-grey"
+                                          ></use>
+                                       </switch>
+                                    </svg>
+                                 </div>
+                                 <div class="wr-u-font-weight-500">
+                                    0%<span class="wr-hide-visually"
+                                       >chance of precipitation</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually">,</span>
+                              <div class="wr-time-slot-primary__wind-speed">
+                                 <div
+                                    class="wr-wind-speed wind-rose wind-rose--direction-n wind-rose--average"
+                                 >
+                                    <span class="wr-hide-visually"
+                                       >Wind speed</span
+                                    ><span class="wr-wind-speed__description"
+                                       ><span class="wr-wind-speed__container"
+                                          ><span class="wr-wind-speed__value"
+                                             ><span
+                                                data-unit="mph"
+                                                class="wr-value--windspeed wr-value--windspeed--mph"
+                                                >13<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >mph</span
+                                                ></span
+                                             ><span
+                                                class="wr-unit__type-separator"
+                                             ></span
+                                             ><span
+                                                data-unit="kph"
+                                                class="wr-value--windspeed wr-value--windspeed--kph"
+                                                >21<!-- -->
+                                                <span
+                                                   class="wr-unit--wind-speed"
+                                                   >km/h</span
+                                                ></span
+                                             ></span
+                                          ></span
+                                       ><span
+                                          class="wind-rose__direction-abbr"
+                                          aria-hidden="true"
+                                       >
+                                          <!-- -->NNE</span
+                                       ></span
+                                    ><span class="wr-wind-speed__icon"
+                                       ><svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          width="40px"
+                                          height="40px"
+                                          class="wr-wind-speed__icon__svg"
+                                          focusable="false"
+                                       >
+                                          <switch>
+                                             <use
+                                                xlink:href="#wr-icon-wind-direction--NNE"
+                                                class="wr-wind-type-wind"
+                                             ></use>
+                                          </switch></svg
+                                       ><span class="wr-wind-speed__value"
+                                          ><span
+                                             data-unit="mph"
+                                             class="wr-value--windspeed wr-value--windspeed--mph"
+                                             >13<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >mph</span
+                                             ></span
+                                          ><span
+                                             class="wr-unit__type-separator"
+                                          ></span
+                                          ><span
+                                             data-unit="kph"
+                                             class="wr-value--windspeed wr-value--windspeed--kph"
+                                             >21<!-- -->
+                                             <span
+                                                class="wr-unit--wind-speed wr-hide-visually"
+                                                >km/h</span
+                                             ></span
+                                          ></span
+                                       ></span
+                                    ><span class="wr-hide-visually"
+                                       >North North Easterly</span
+                                    >
+                                 </div>
+                              </div>
+                              <span class="wr-hide-visually"
+                                 >, More details<!-- -->&nbsp;</span
+                              >
+                           </div>
+                        </div>
+                     </div>
+                     <div
+                        class="wr-time-slot-secondary wr-js-time-slot-secondary gel-long-primer"
+                     >
+                        <div class="wr-time-slot-secondary__inner">
+                           <span
+                              class="wr-time-slot-secondary__weather-type-text gel-pica-bold"
+                              >Sunny intervals and a moderate breeze</span
+                           >
+                           <div
+                              class="wr-time-slot-secondary__bottom-section-container"
+                           >
+                              <div
+                                 class="wr-time-slot-secondary__bottom-section"
+                              >
+                                 <dl class="wr-time-slot-secondary__list">
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Humidity
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       75%
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Pressure
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       1019 mb
+                                    </dd>
+                                    <dt class="wr-time-slot-secondary__label">
+                                       Visibility
+                                    </dt>
+                                    <dd
+                                       class="wr-time-slot-secondary__value gel-long-primer-bold"
+                                    >
+                                       Good
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__feels-like-temperature wr-time-slot-secondary__bottom-section"
+                              >
+                                 Temperature feels like
+                                 <span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--c"
+                                    >16°</span
+                                 ><span
+                                    class="wr-time-slot-secondary__feels-like-temperature-value gel-long-primer-bold wr-value--temperature--f"
+                                    >61°</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__chance-of-rain wr-time-slot-secondary__bottom-section"
+                              >
+                                 <span
+                                    class="wr-time-slot-secondary__chance-of-rain-value"
+                                    >Precipitation is not expected</span
+                                 >
+                              </div>
+                              <div
+                                 class="wr-time-slot-secondary__wind-direction wr-time-slot-secondary__bottom-section gel-long-primer"
+                              >
+                                 A moderate breeze from the north north east
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </button>
+               </li>
+            </ol>
+         </div>
+      </main>
+      <footer></footer>
+   </body>
+</html>
