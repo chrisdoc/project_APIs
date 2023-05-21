@@ -16,31 +16,32 @@ export async function moviesFromTMDB(searchTerm = "alone") {
          ? discoverUrlTMDB
          : searchUrlTMDB + searchTerm;
 
-   try {
-      const response = await fetch(url);
-      const { results } = await response.json();
-      const finalResults = results.map((item) => {
-         const tempItem = {};
-         tempItem.movieTitle = item.title;
-         tempItem.moviePoster = item.poster_path
-            ? baseImgUrlTMDB + item.poster_path
-            : "./images/default_movie_poster.jpg";
-         tempItem.movieOverview = item.overview;
-         tempItem.movieRating = item.vote_average;
-         tempItem.movieDate = item.release_date;
-         return tempItem;
-      });
-      return finalResults;
-   } catch (error) {
-      const msg = `Something went wrong while fetching popular movies from ${url.slice(
-         0,
-         35
-      )}... The server may be busy or there would be a connection problem. Please check your Internet connection and try again.`;
-      renderModalForm(createErrorObject(msg));
-      throw new Error(
-         `Something went wrong while fetching popular movies from TMDB! Please check your Internet connection. ${error}`
-      );
-   }
+  try {
+    const response = await fetch(url);
+    const { results } = await response.json();
+    const finalResults = results.map((item) => {
+      const tempItem = {};
+      tempItem.movieTitle = item.title;
+      tempItem.moviePoster = item.poster_path
+        ? baseImgUrlTMDB + item.poster_path
+        : "./images/default_movie_poster.jpg";
+      tempItem.movieOverview = item.overview;
+      tempItem.movieRating = item.vote_average;
+      tempItem.movieDate = item.release_date;
+      return tempItem;
+    });
+    return finalResults;
+  } catch (error) {
+    //TODO: what is the purpose of the url slicing? Is it otherwise too long?
+    const msg = `Something went wrong while fetching popular movies from ${url.slice(
+      0,
+      35
+    )}... The server may be busy or there would be a connection problem. Please check your Internet connection and try again.`;
+    renderModalForm(createErrorObject(msg));
+    throw new Error(
+      `Something went wrong while fetching popular movies from TMDB! Please check your Internet connection. ${error}`
+    );
+  }
 }
 
 function createErrorObject(errorMessage) {

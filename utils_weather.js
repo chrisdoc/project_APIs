@@ -72,11 +72,16 @@ function renderWeatherData(data) {
 }
 
 const matchFlag = (countryAbbreviation) => {
-   for (let i = 0; i < countryList.length; i++) {
-      if (countryAbbreviation.toUpperCase() === countryList[i].iso2)
-         return countryList[i].flag;
-   }
-   return "https://flagcdn.com/w320/nl.png";
+  /**
+   * TODO: this could be simplified with https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+   * const flag = countryList.find({iso2}=> countryAbbreviation.toUpperCase()===iso2)
+   * return flag ? flag : "https://flagcdn.com/w320/nl.png"
+   */
+  for (let i = 0; i < countryList.length; i++) {
+    if (countryAbbreviation.toUpperCase() === countryList[i].iso2)
+      return countryList[i].flag;
+  }
+  return "https://flagcdn.com/w320/nl.png";
 };
 
 const refreshWeatherIcon = document.getElementById("refresh-weather-icon");
@@ -179,29 +184,29 @@ function drawWeatherDetailsTable(data) {
 
 let weatherList = [];
 function getWeather5days() {
-   for (const radioButton of radioButtonsWeatherDetails) {
-      radioButton.checked = false;
-   }
-   radio12hours.checked = true;
+  for (const radioButton of radioButtonsWeatherDetails) {
+    radioButton.checked = false;
+  }
+  radio12hours.checked = true;
 
-   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-         const long = position.coords.longitude;
-         const lat = position.coords.latitude;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const long = position.coords.longitude;
+      const lat = position.coords.latitude;
 
-         const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
-
-         const currentWeather = fetch(urlFiveDays)
-            .then((data) => {
-               return data.json();
-            })
-            .then((response) => {
-               weatherList = response.list;
-               // console.log("weatherList: ", weatherList);
-               drawWeatherDetailsTable(weatherList.slice(0, 5));
-            });
-      });
-   }
+      const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
+      //TODO: currentWeather is not used anywhere so it can be safely deleted
+      const currentWeather = fetch(urlFiveDays)
+        .then((data) => {
+          return data.json();
+        })
+        .then((response) => {
+          weatherList = response.list;
+          // console.log("weatherList: ", weatherList);
+          drawWeatherDetailsTable(weatherList.slice(0, 5));
+        });
+    });
+  }
 }
 
 const radioButtonsWeatherDetails = document.querySelectorAll(
@@ -211,6 +216,7 @@ for (const radioButton of radioButtonsWeatherDetails) {
    radioButton.addEventListener("change", changeHours);
 }
 
+//TODO: the function parameter e is not used and can be delted
 function changeHours(e) {
    if (this.checked) {
       const selectedHours = this.value;
@@ -252,89 +258,87 @@ closeWeatherDetailsGraph.addEventListener("click", () => {
 
 let myChart = null;
 function drawWeatherDetailsGraph(data) {
-   containerFooterBodyGraph.style.display = "flex";
-   containerFooterBody.style.display = "block";
+  containerFooterBodyGraph.style.display = "flex";
+  containerFooterBody.style.display = "block";
 
-   const ctx = document.getElementById("canvas-weather-details");
+  const ctx = document.getElementById("canvas-weather-details");
 
-   if (myChart != null) myChart.destroy();
+  if (myChart != null) myChart.destroy();
 
-   console.log("data: ", data);
+  console.log("data: ", data);
 
-   let labelsHours = [];
-   let dataHeat = [];
-   data.forEach((element) => {
-      const getHoursFromDate = new Date(element.dt_txt).getHours();
-      const getMinutesFromDate = new Date(element.dt_txt).getMinutes();
-      const convertHours =
-         getHoursFromDate < 10 ? "0" + getHoursFromDate : getHoursFromDate;
-      const convertMinutes =
-         getMinutesFromDate < 10
-            ? "0" + getMinutesFromDate
-            : getMinutesFromDate;
-      // tempColHour.innerText = convertHours + ":" + convertMinutes;
-      labelsHours.push(convertHours + ":" + convertMinutes);
+  let labelsHours = [];
+  let dataHeat = [];
+  data.forEach((element) => {
+    const getHoursFromDate = new Date(element.dt_txt).getHours();
+    const getMinutesFromDate = new Date(element.dt_txt).getMinutes();
+    //TODO: adding leading zeros could also be achieve with padStart(2, '0')
+    const convertHours =
+      getHoursFromDate < 10 ? "0" + getHoursFromDate : getHoursFromDate;
+    const convertMinutes =
+      getMinutesFromDate < 10 ? "0" + getMinutesFromDate : getMinutesFromDate;
+    // tempColHour.innerText = convertHours + ":" + convertMinutes;
+    labelsHours.push(convertHours + ":" + convertMinutes);
 
-      const tempHeatValue = Math.round(element.main.temp);
-      // const convertHeat =
-      //    tempHeatValue > 9 ? tempHeatValue : "0" + tempHeatValue;
-      dataHeat.push(tempHeatValue);
-   });
+    const tempHeatValue = Math.round(element.main.temp);
+    // const convertHeat =
+    //    tempHeatValue > 9 ? tempHeatValue : "0" + tempHeatValue;
+    dataHeat.push(tempHeatValue);
+  });
 
-   console.log("labelsHours: ", labelsHours);
-   console.log("dataHeat: ", dataHeat);
+  console.log("labelsHours: ", labelsHours);
+  console.log("dataHeat: ", dataHeat);
 
-   myChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-         // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-         labels: labelsHours,
-         datasets: [
-            {
-               label: "5 Days Forecast",
-               // data: [12, 19, 3, 5, 2, 3],
-               data: dataHeat,
-               // borderWidth: 50,
-            },
-         ],
-      },
-      options: {
-         scales: {
-            y: {
-               beginAtZero: true,
-            },
-         },
+  myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: labelsHours,
+      datasets: [
+        {
+          label: "5 Days Forecast",
+          // data: [12, 19, 3, 5, 2, 3],
+          data: dataHeat,
+          // borderWidth: 50,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
       },
    });
 }
 
 let weatherListGraph = [];
 function getWeather5daysGraph() {
-   // console.log("uuuuuuuuuuuuu");
-   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-         const long = position.coords.longitude;
-         const lat = position.coords.latitude;
+  // console.log("uuuuuuuuuuuuu");
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const long = position.coords.longitude;
+      const lat = position.coords.latitude;
 
-         // console.log("long", long);
-         // console.log("lat", lat);
+      // console.log("long", long);
+      // console.log("lat", lat);
 
-         const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
+      const urlFiveDays = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${API_Key_Openweather}&units=metric`;
 
-         // console.log("urlFiveDays", urlFiveDays);
-
-         const currentWeather = fetch(urlFiveDays)
-            .then((data) => {
-               return data.json();
-            })
-            .then((response) => {
-               weatherListGraph = response.list;
-               // console.log("response: ", response.list);
-               // console.log("weatherList: ", weatherList);
-               drawWeatherDetailsGraph(weatherListGraph);
-            });
-      });
-   }
+      // console.log("urlFiveDays", urlFiveDays);
+      // TODO: currentWeather is not used so there is no need to create a variable
+      const currentWeather = fetch(urlFiveDays)
+        .then((data) => {
+          return data.json();
+        })
+        .then((response) => {
+          weatherListGraph = response.list;
+          // console.log("response: ", response.list);
+          // console.log("weatherList: ", weatherList);
+          drawWeatherDetailsGraph(weatherListGraph);
+        });
+    });
+  }
 }
 
 // function getWeather() {

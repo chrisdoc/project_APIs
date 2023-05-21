@@ -14,9 +14,9 @@ async function main() {
    for (const radioButton of radioButtons)
       radioButton.addEventListener("change", changeAPI);
 
-   renderMovies(await moviesFromTMDB("discover_mode"));
-
-   const temp = getWeatherData();
+  renderMovies(await moviesFromTMDB("discover_mode"));
+  //TODO: getWeatherData does not return any value so this assignment is not needed
+  const temp = getWeatherData();
 }
 
 async function getMovies(searchTerm) {
@@ -31,67 +31,69 @@ submitButton.addEventListener("click", async (e) => {
 });
 
 async function renderMovies(movieList) {
-   try {
-      const mainSection = document.getElementById("main");
-      if (movieList.length > 0) {
-         mainSection.innerHTML = ``;
-         movieList.forEach((element) => {
-            const movieDiv = document.createElement("div");
-            movieDiv.classList.add("movie");
+  try {
+    const mainSection = document.getElementById("main");
+    if (movieList.length > 0) {
+      mainSection.innerHTML = ``;
+      movieList.forEach((element) => {
+        const movieDiv = document.createElement("div");
+        movieDiv.classList.add("movie");
 
-            const moviePoster = document.createElement("img");
-            moviePoster.src = element.moviePoster;
-            moviePoster.alt = element.movieTitle;
-            movieDiv.appendChild(moviePoster);
+        const moviePoster = document.createElement("img");
+        moviePoster.src = element.moviePoster;
+        moviePoster.alt = element.movieTitle;
+        movieDiv.appendChild(moviePoster);
 
-            const movieInfo = document.createElement("div");
-            movieInfo.classList.add("movie-info");
-            const movieInfoH2 = document.createElement("h2");
-            movieInfoH2.textContent = element.movieTitle;
-            movieInfo.appendChild(movieInfoH2);
+        const movieInfo = document.createElement("div");
+        movieInfo.classList.add("movie-info");
+        const movieInfoH2 = document.createElement("h2");
+        movieInfoH2.textContent = element.movieTitle;
+        movieInfo.appendChild(movieInfoH2);
 
-            const movieInfoSpan = document.createElement("span");
-            movieInfoSpan.textContent = element.movieRating;
+        const movieInfoSpan = document.createElement("span");
+        movieInfoSpan.textContent = element.movieRating;
 
-            movieInfoSpan.style.position = "absolute";
-            movieInfoSpan.style.right = "10px";
-            movieInfoSpan.style.top = "10px";
+        movieInfoSpan.style.position = "absolute";
+        movieInfoSpan.style.right = "10px";
+        movieInfoSpan.style.top = "10px";
 
-            movieInfo.appendChild(movieInfoSpan);
+        movieInfo.appendChild(movieInfoSpan);
 
-            const movieDate = document.createElement("p");
-            movieDate.textContent = element.movieDate;
-            movieInfo.appendChild(movieDate);
+        const movieDate = document.createElement("p");
+        movieDate.textContent = element.movieDate;
+        movieInfo.appendChild(movieDate);
 
-            movieDiv.appendChild(movieInfo);
+        movieDiv.appendChild(movieInfo);
 
-            movieDiv.innerHTML += `
+        //TODO: could you also write this in pure javascript by creating a new article element and then use dataset property like described here https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
+        movieDiv.innerHTML += `
                <article data-overview="${element.movieOverview}"></article>
                <article data-year="${element.movieDate}"></article>`;
 
-            movieDiv.addEventListener("click", (e) => {
-               if (e.target.tagName === "IMG")
-                  renderModalForm(createInfoObject(e));
-            });
+        //TODO: Since you are only interested in clicks on the image, why not change this from movieDiv to moviePoster
+        movieDiv.addEventListener("click", (e) => {
+          if (e.target.tagName === "IMG") renderModalForm(createInfoObject(e));
+        });
 
-            movieDiv.addEventListener("mouseenter", (e) => {
-               e.target.children[1].style.display = "flex";
-            });
+        //TODO: this could also be achieved by adding display:flex to the .movie-info:hover css style
+        movieDiv.addEventListener("mouseenter", (e) => {
+          e.target.children[1].style.display = "flex";
+        });
 
-            movieDiv.addEventListener("mouseleave", (e) => {
-               e.target.children[1].style.display = "none";
-            });
+        movieDiv.addEventListener("mouseleave", (e) => {
+          e.target.children[1].style.display = "none";
+        });
 
-            mainSection.appendChild(movieDiv);
-         });
-      } else {
-         throw new Error(
-            "Please input a search term in the Search Movie section, Movie Title."
-         );
-      }
-   } catch (error) {
-      renderModalForm(createErrorObject(error.message));
-   }
+        mainSection.appendChild(movieDiv);
+      });
+    } else {
+      throw new Error(
+        "Please input a search term in the Search Movie section, Movie Title."
+      );
+    }
+  } catch (error) {
+    renderModalForm(createErrorObject(error.message));
+  }
 }
 
 async function changeAPI(e) {
